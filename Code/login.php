@@ -81,7 +81,7 @@ try {
         <button type="submit" id=create>nog geen account? <span>account aanmaken</span> </button>
     </Form>
     <footer>
-        <a href="Hobby.html" id="contact-color">
+        <a href="contact.php" id="contact-color">
             <h2>Contact</h2>
         </a>
         <a id="contact-color">
