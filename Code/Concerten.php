@@ -97,7 +97,7 @@ try {
             </a>
         </h3>
         <footer>
-            <a href="Hobby.html" id="contact-color">
+            <a href="contact.php" id="contact-color">
                 <h2>Contact</h2>
             </a>
             <a id="contact-color">
