@@ -1,4 +1,4 @@
-# vul hier de naam van jouw project in
+# sigma Media
 ## Documenten
 In de map Documenten vind je alle bestanden zoals
 - Opdracht
