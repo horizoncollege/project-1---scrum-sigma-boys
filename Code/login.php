@@ -75,50 +75,26 @@ try {
 
     </header>
     <Form id="Formcontainer" method="post">
-        <input type="text" id=lettters name="name" placeholder="Email-adres of gebruikersnaam">
+        <input type="text" id=lettters name="name" placeholder="gebruikersnaam">
         <input type="text" id=lettters name="pass" placeholder="Wachtwoord">
         <input type="submit" id=inloggen name="login" value="Inloggen">
         <a href="registratie.php" id=create>nog geen account? <span>account aanmaken</span> </a>
     </Form>
     <?php
-    $stmt = $pdo->prepare("SELECT * FROM users");
-    $stmt->execute();
-    $gebruikers = $stmt->fetch(PDO::FETCH_OBJ);
-
-    function getUsername()
-    {
-        global $gebruikers;
-        return  $gebruikers->username;
-    }
-    function getEmail()
-    {
-        global $gebruikers;
-        return $gebruikers->emailAddress;
-    }
-    function getPassword()
-    {
-        global $gebruikers;
-        return $gebruikers->wachtwoord;
-    }
-
-    $user = getUsername();
-    $ww = getPassword();
-    $email = getEmail();
-    if (isset($_POST["login"])) {
+   
+    if (isset($_POST['name']) && isset($_POST['pass'])) {
         $username = $_POST['name'];
         $password = $_POST['pass'];
-        if ($username == $user && $password == $ww) {
-            $_SESSION['userlogin'] = $username;
-        } else {
-            echo "<h1 id='denied'>Invalide gebruikersnaam of wachtwoord combinatie</h1>";
+        $query = $pdo->query("SELECT * FROM users WHERE username = '$username' AND wachtwoord = '$password'");
+        $user = $query->fetch();
+
+        if ($user !== false) {
+            $_SESSION['loggedInUser'] = $user['id'];
+            header("Location: index.php?username=$username&password=$password");
         }
-    }
 
-
-
-    if (isset($_SESSION['userlogin'])) {
-        echo "<h1 id='denied'>welcome $user</h1>";
-        header("Refresh:1; url=index.php");
+        $_SESSION['error'] = "<h1 id=denied>Gebruikersnaam of wachtwoord is ongeldig. </h1>";
+        echo '<script>alert("wrong Username/E-mail or password")</script> ';
     }
     ?>
     <footer>
