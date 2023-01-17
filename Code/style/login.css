@@ -13,7 +13,10 @@
     width: 1450px;
     margin-left: 10%;
 }
-
+#login{
+    display: none;
+  margin-top: 30%;  
+}
 #lettters {
     display: flex;
     margin-left: 20%;

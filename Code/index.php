@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $host = 'localhost';
 $db   = 's168308_project';
 $user = 's168308_Project';
@@ -71,9 +73,20 @@ try {
 
                     </a>
                 </div>
+                <!-- show/hide login button -->
                 <div id="login">
-                    <a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
-                    </a>
+                    <?php if (!isset($_SESSION['loggedInUser'])) {
+                        echo '<a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
+                        </a>';
+                    }
+                    if(isset($_SESSION['loggedInUser'])){
+                        echo '<h1 id="nav-color">' . $_SESSION['user'] . '</h1>
+                        
+                        <a href="logout.php" id="nav-color"><script>alert("wrong Username/E-mail or password")</script>  <img src="Img/admin.png" alt="Login_button">
+                        </a>';
+                    }
+                    ?>
+
                     <a href="shopping.php" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
                     </a>
                 </div>

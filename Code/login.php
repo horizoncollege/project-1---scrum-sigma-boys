@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $host = 'localhost';
 $db   = 's168308_project';
 $user = 's168308_Project';
@@ -19,7 +21,6 @@ try {
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
-
 
 
 ?>
@@ -81,20 +82,24 @@ try {
         <a href="registratie.php" id=create>nog geen account? <span>account aanmaken</span> </a>
     </Form>
     <?php
-   
+    // aquires input/database information
     if (isset($_POST['name']) && isset($_POST['pass'])) {
         $username = $_POST['name'];
         $password = $_POST['pass'];
-        $query = $pdo->query("SELECT * FROM users WHERE username = '$username' AND wachtwoord = '$password'");
+        $query = $pdo->query("SELECT * FROM users WHERE username = '$username' AND wachtwoord = '$password' ");
         $user = $query->fetch();
-
+        // checks if input = database
         if ($user !== false) {
-            $_SESSION['loggedInUser'] = $user['id'];
-            header("Location: index.php?username=$username&password=$password");
+            $_SESSION['loggedInUser'] = $user['username'];
+        } else {
+            $_SESSION['error'] = "<h1 id=denied>Gebruikersnaam of wachtwoord is ongeldig. </h1>";
+            echo '<script>alert("wrong Username/E-mail or password")</script> ';
         }
-
-        $_SESSION['error'] = "<h1 id=denied>Gebruikersnaam of wachtwoord is ongeldig. </h1>";
-        echo '<script>alert("wrong Username/E-mail or password")</script> ';
+    }
+    // check if session is active and sends user to index
+    if (isset($_SESSION['loggedInUser'])) {
+        echo $_SESSION['user'] = $username;
+        header("Refresh:0; url=index.php");
     }
     ?>
     <footer>

@@ -2,7 +2,11 @@
     font-family: "Geo";
     src: url(../Fonts/Geo-Regular.ttf);
 }
-
+.working{
+    display: none;
+  margin-top: 30%;  
+  color: red;
+}
 #body{
     display: flex;
     height: 480px;
