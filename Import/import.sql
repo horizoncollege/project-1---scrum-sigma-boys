@@ -1,38 +1,37 @@
-DROP DATABASE IF EXISTS s168308_project;
-CREATE DATABASE s168308_project;
+DROP `s168398_Project`;
+CREATE `s168398_Project`
+USE `s168398_Project`;
 
-USE s168308_project;
-
-CREATE TABLE users (
-userID int AUTO_INCREMENT PRIMARY KEY,
-username varchar(255),
-wachtwoord varchar(255),
-isAdmin bit,
-emailAddress varchar(255)
+CREATE TABLE `Film` (
+	id MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    Length INTEGER NOT NULL,
+    Locatie VARCHAR(100) NULL,
+    language VARCHAR(2) NULL,
+    summary TEXT NOT NULL
+);
+CREATE TABLE `concert` (
+	id MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    Length INTEGER NOT NULL,
+    Locatie VARCHAR(100) NULL,
+    language VARCHAR(2) NULL,
+    summary TEXT NOT NULL
+);
+CREATE TABLE `musical` (
+	id MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    Length INTEGER NOT NULL,
+    Locatie VARCHAR(100) NULL,
+    language VARCHAR(2) NULL,
+    summary TEXT NOT NULL
+);
+CREATE TABLE `event` (
+	id MEDIUMINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    Length INTEGER NOT NULL,
+    Locatie VARCHAR(100) NULL,
+    language VARCHAR(2) NULL,
+    summary TEXT NOT NULL
 );
 
-CREATE TABLE tickets (
-ticketType varchar(255),
-ticketName varchar(255),
-Location varchar(255),
-price int,
-duration int,
-description longtext
-);
-
-CREATE TABLE orders (
-orderID int AUTO_INCREMENT PRIMARY KEY,
-orderedBy varchar(255)
-);
-
-CREATE TABLE orderItems (
-orderItemID int AUTO_INCREMENT PRIMARY KEY,
-orderID int,
-FOREIGN KEY (orderID) REFERENCES orders(orderID)
-);
-
-INSERT INTO users (username, wachtwoord, isAdmin, emailAddress)
-VALUES ("Henk", "HenkIsDeBeste", 0, "henk@gmail.com");
-
-INSERT INTO users (username, wachtwoord, isAdmin, emailAddress)
-VALUES ("Hugo", "HugoDeAdmin", 1, "hugo.admin@gmail.com");
