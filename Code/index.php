@@ -79,14 +79,25 @@ try {
                         echo '<a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
                     }
-                    if(isset($_SESSION['loggedInUser'])){
+                    if (isset($_SESSION['loggedInUser'])) {
                         echo '<h1 id="nav-color">' . $_SESSION['user'] . '</h1>
-                        
-                        <a href="logout.php" id="nav-color"><script>alert("wrong Username/E-mail or password")</script>  <img src="Img/admin.png" alt="Login_button">
+                        <a href="logout.php" id="nav-color" onClick="return confirmLogout()"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
                     }
-                    ?>
 
+                    ?>
+                    <!-- log out confirmation -->
+                    <script language="JavaScript">
+                        function confirmLogout()
+                        {
+
+                            if (!confirm("Are you sure you want to log out?")) {
+
+                                return false;
+
+                            }
+                        }
+                    </script>
                     <a href="shopping.php" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
                     </a>
                 </div>
