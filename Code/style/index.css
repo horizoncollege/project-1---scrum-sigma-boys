@@ -11,7 +11,7 @@
     display: flex;
     height: 480px;
    justify-content: center;
-   margin-top: 50px;
+   margin-top: 2.5%;
 }
 #body-color{
     padding: 15px ;
@@ -22,3 +22,15 @@
     border-width: 15px;
     border-style: solid;
 }
+
+#SeeMoreImg{
+    position:absolute;
+    margin-left: 85%;
+    margin-top: 8%;
+    height: 50px;
+    width: 220px;
+}
+#SeeMoreStyle{
+    text-decoration: none;
+}
+ 

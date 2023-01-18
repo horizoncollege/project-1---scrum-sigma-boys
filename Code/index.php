@@ -81,7 +81,7 @@ try {
                     }
                     if (isset($_SESSION['loggedInUser'])) {
                         echo '<h1 id="nav-color">' . $_SESSION['user'] . '</h1>
-                        <a href="logout.php" id="nav-color" onClick="return confirmLogout()"> <img src="Img/admin.png" alt="Login_button">
+                        <a href="logout.php" id="log" onClick="return confirmLogout()"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
                     }
 

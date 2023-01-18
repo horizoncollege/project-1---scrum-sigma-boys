@@ -10,7 +10,7 @@
     display: flex;
     height: 480px;
    justify-content: center;
-   margin-top: 50px;
+   margin-top: 2.5%;
 }
 #body-color{
     padding: 15px ;
@@ -21,29 +21,10 @@
     border-width: 15px;
     border-style: solid;
 }
-
-#SeeMore{
-    position:absolute;
-    margin-left: 1580px;
-    margin-top: 165px;
-    font-family: Geo;
-    text-decoration: none;
-    color: #b11a09;
-    font-size: 35px;
-}
-#Arrow{
-    position:absolute;
-    margin-left: 1700px;
-    margin-top: 185px;
-    font-family: Geo;
-    text-decoration: none;
-    color: #b11a09;
-    font-size: 35px;
-}
 #SeeMoreImg{
     position:absolute;
-    margin-left: 1600px;
-    margin-top: 160px;
+    margin-left: 85%;
+    margin-top: 8%;
     height: 50px;
     width: 220px;
 }

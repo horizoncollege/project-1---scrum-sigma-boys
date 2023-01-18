@@ -1,75 +1,80 @@
-*{
-    border: 0;
-    margin: 0;
-    padding: 0;
-    outline: 0;
-}
-@font-face {
-    font-family: "Geo";
-    src: url(../Fonts/Geo-Regular.ttf);
-}
-#login{
-    display: flex;
-    padding: -20px;
-    margin-left: 400px;
-    margin-top: 30px;
-    height: 80px ;
-    padding: 15px;
-}
-#nav-bar {
-    display: flex;
-    justify-content: center;
-    justify-content: space-evenly;
-    list-style: none;
-    text-decoration: none;
-    width: 30px;
-    margin-left: 400px;
-    margin-top: 55px;
-    font-size: 23px;
-    font-family: Geo;
-}
-#nav-color{
-    color: #b11a09;
-}
-#Sigma {
-    font-family: Geo;
-    margin-top: 30px;
-    font-size: 40px;
-    display: flex;
-    justify-content: left;
-    margin-left: 180px;
-}
+    *{
+        border: 0;
+        margin: 0;
+        padding: 0;
+        outline: 0;
+    }
+    @font-face {
+        font-family: "Geo";
+        src: url(../Fonts/Geo-Regular.ttf);
+    }
+    #login{
+        display: flex;
+        padding: 5%;
+        margin-left: 20%;
+        margin-top: 2%;
+        height: 80px ;
+        padding: 15px;
+    }
+    #nav-bar {
+        display: flex;
+        justify-content: center;
+        justify-content: space-evenly;
+        list-style: none;
+        text-decoration: none;
+        width: 5%;
+        margin-left: 23%;
+        margin-top: 2.5%;
+        font-size: 23px;
+        font-family: Geo;
+    }
+    #nav-color{
+        color: #b11a09;
+    }
+    #log{
+        font-family: Geo;
+        color: #b11a09;
+        font-size: 23px;
+    }
+    #Sigma {
+        font-family: Geo;
+        margin-top: 1.5%;
+        font-size: 40px;
+        display: flex;
+        justify-content: left;
+        margin-left: 6%;
+    }
 
-a {
-    display: flex;
-    text-decoration: none;
-}
+    a {
+        display: flex;
+        text-decoration: none;
+    }
 
-body {
-    background-color: black;
-}
+    body {
+        background-color: black;
+    }
 
-#container {
-    display: flex;
-}
+    #container {
+        display: flex;
+    }
 
-h2{
-    padding: 5px;
-}
+    h2{
+        padding: 5px;
+    }
 
-footer{
-    display: flex;
-    justify-content: center;
-    font-family: Geo;
-    list-style: none;
-    text-decoration: none;
-    background-color: #281005;
-    margin-top: 220px;
-    width: 1920px;
-    font-family: 'Geo';
-}
-#contact-color{
-    display: flex;
-    color: #ffffff;
-    font-size: 35px;
-}
+    footer{
+        display: flex;
+        justify-content: center;
+        font-family: Geo;
+        list-style: none;
+        text-decoration: none;
+        background-color: #281005;
+        margin-top: 11.1%;
+        width: 100%;
+        font-family: 'Geo';
+    }
+    #contact-color{
+        display: flex;
+        color: #ffffff;
+        font-size: 35px;
+    }
