@@ -1,9 +1,9 @@
 <?php
 
 $host = 'localhost';
-$db   = 's168308_Project';
-$user = 's168308_Project';
-$pass = 'Pr0ject';
+$db = 's168308_project';
+$user = 'bit_academy';
+$pass = 'bit_academy';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -20,19 +20,18 @@ try {
 }
 
 if (isset($_POST['verzenden'])) {
+    contact($naam, $email, $bericht, $pdo, $dsn, $user, $pass);
+}
+
+function contact($naam, $email, $bericht, $pdo, $dsn, $user, $pass)
+{
     $naam = $_POST['contactnaam'];
     $email = $_POST['contactemail'];
     $bericht = $_POST['contactbericht'];
 
     $pdo = new PDO($dsn, $user, $pass);
 
-    contact($naam, $email, $bericht, $pdo);
-}
 
-session_start();
-
-function contact($naam, $email, $bericht, $pdo)
-{
     $sql = "INSERT INTO contact(naam, email, bericht)
         VALUES (?, ?, ?);";
 
@@ -53,26 +52,11 @@ function contact($naam, $email, $bericht, $pdo)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
     <link rel="stylesheet" href="style/contact.css">
-    <script src="javascript/Index.js"></script>1q
+    <script src="javascript/contact.js"></script>
     <title>Sigma Media</title>
 </head>
 
 <body>
-
-    <div class="topnav">
-        <a href="index.php" class="active">Sigma media</a>
-        <!-- Navigation links (hidden by default) -->
-        <div id="myLinks">
-            <a href="film.php">FILMS</a>
-            <a href="musical.php" id="MusicalCurrentPage">MUSICALS</a>
-            <a href="Concerten.php">CONCERTEN</a>
-            <a href="events.php">EVENTS</a>
-        </div>
-        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
-    </div>
     <header class="Header">
         <div id="container">
             <div id="Sigma">
@@ -114,15 +98,15 @@ function contact($naam, $email, $bericht, $pdo)
     </header>
     <form id="contactform" method="post">
         <div id="top">
-            <input type="text" id="InputTop" name="contactnaam" placeholder="Vul hier uw naam in">
-            <input type="email" id="InputTop" name="contactemail" placeholder="Vul hier uw email-adress in">
+            <input type="text" id="inputtop" name="contactnaam" placeholder="Vul hier uw naam in" required>
+            <input type="email" id="inputtop" name="contactemail" placeholder="Vul hier uw email-adress in" required>
         </div>
         <div id="center">
-            <textarea name="contactbericht" id="InputCenter" cols="30" rows="10" placeholder="Vul hier uw bericht in..."></textarea>
+            <textarea name="contactbericht" id="inputcenter" cols="30" rows="10" placeholder="Vul hier uw bericht in..." required></textarea>
         </div>
         <div id="bottem">
-            <h3 id="Inputbottem"> wij zijn telefonish bereikbaar op +06 8008135</h3>
-            <input type="submit" id="Inputbottem" value="verzenden" name="verzenden">
+            <h3 id="inputbottem"> wij zijn telefonish bereikbaar op +06 8008135</h3>
+            <input type="submit" id="inputbottem" value="verzenden" name="verzenden" onclick="contactalert()">
         </div>
     </form>
     <footer>
