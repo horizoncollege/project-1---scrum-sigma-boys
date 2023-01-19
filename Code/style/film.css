@@ -28,14 +28,25 @@
 }
 
 #SeeMoreImg {
-    position: absolute;
-    margin-left: 85%;
+    position: fixed;
+    margin-left: 86%;
     margin-top: 8%;
-    bottom: 5px;
+    bottom: 60px;
     height: 50px;
     width: 220px;
 }
 
 #SeeMoreStyle {
     text-decoration: none;
+}
+@media only screen and (max-width: 400PX) {
+    #SeeMoreImg {
+        position: fixed;
+        margin-left: 45%;
+        margin-top: 8%;
+        bottom: 60px;
+        height: 50px;
+        width: 220px;
+    }
+
 }

@@ -20,7 +20,7 @@ try {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-
+session_start();
 
 ?>
 
@@ -38,6 +38,22 @@ try {
 </head>
 
 <body>
+
+    <div class="topnav">
+        <a href="index.php" class="active">Sigma media</a>
+        <!-- Navigation links (hidden by default) -->
+        <div id="myLinks">
+            <a href="film.php">FILMS</a>
+            <a href="musical.php" id="MusicalCurrentPage">MUSICALS</a>
+            <a href="Concerten.php">CONCERTEN</a>
+            <a href="events.php">EVENTS</a>
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
     <header>
         <header class="Header">
             <div id="container">

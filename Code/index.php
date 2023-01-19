@@ -33,7 +33,6 @@ try {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style/navbar.css">
     <link rel="stylesheet" href="style/index.css">
     <script src="javascript/Index.js"></script>
@@ -41,6 +40,46 @@ try {
 </head>
 
 <body>
+
+    <!-- Top Navigation Menu -->
+    <div class="topnav">
+        <a href="index.php" class="active">SIGMA MEDIA</a>
+        <!-- Navigation links (hidden by default) -->
+        <div id="myLinks">
+            <?php if (!isset($_SESSION['loggedInUser'])) {
+                echo '<h1 id= "nav-color">hallo gebruiker</h1>';
+            }
+            if (isset($_SESSION['loggedInUser'])) {
+                echo '<h1 id= "nav-color"> Welkom ' . $_SESSION['user'] . '</h1>';
+            }
+
+            ?>
+            <a href="film.php">FILMS</a>
+            <a href="musical.php">MUSICALS</a>
+            <a href="Concerten.php">CONCERTEN</a>
+            <a href="events.php">EVENTS</a>
+            <?php if (!isset($_SESSION['loggedInUser'])) {
+                echo ' <a href="login.php">INLOGGEN</a>';
+            }
+            if (isset($_SESSION['loggedInUser'])) {
+                echo ' <a href="logout.php">UITLOGGEN</a>';
+            }
+
+            ?>
+
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+
+
+
+
+
+
     <header>
         <header class="Header">
             <div id="container">
@@ -54,19 +93,19 @@ try {
                         <h2>FILMS</h2>
                     </a>
                     <a>
-                        <h2 id="nav-color">|</h2>
+                        <h2 class="line" id="nav-color">|</h2>
                     </a>
                     <a href="musical.php" class="menuItem" id="nav-color">
                         <h2>MUSICALS</h2>
                     </a>
                     <a>
-                        <h2 id="nav-color">|</h2>
+                        <h2 class="line" id="nav-color">|</h2>
                     </a>
                     <a href="Concerten.php" class="menuItem" id="nav-color">
                         <h2>CONCERTEN</h2>
                     </a>
                     <a>
-                        <h2 id="nav-color">|</h2>
+                        <h2 class="line" id="nav-color">|</h2>
                     </a>
                     <a href="events.php" class="menuItem" id="nav-color">
                         <h2>EVENTS</h2>
@@ -75,11 +114,9 @@ try {
                     </a>
                 </div>
                 <!-- Hamburger -->
-                <button class="hamburger">
-                    <!-- material icons https://material.io/resources/icons/ -->
-                    <i class="menuIcon material-icons">menu</i>
-                    <i class="closeIcon material-icons">close</i>
-                </button>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
                 <!-- show/hide login button -->
                 <div id="login">
                     <?php if (!isset($_SESSION['loggedInUser'])) {
