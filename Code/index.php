@@ -33,6 +33,7 @@ try {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style/navbar.css">
     <link rel="stylesheet" href="style/index.css">
     <script src="javascript/Index.js"></script>
@@ -48,31 +49,37 @@ try {
                         <h1>SIGMA MEDIA</h1>
                     </a>
                 </div>
-                <div id="nav-bar">
-                    <a href="film.php" id="nav-color">
+                <div id="nav-bar" class="menu">
+                    <a href="film.php" class="menuItem" id="nav-color">
                         <h2>FILMS</h2>
                     </a>
                     <a>
                         <h2 id="nav-color">|</h2>
                     </a>
-                    <a href="musical.php" id="nav-color">
+                    <a href="musical.php" class="menuItem" id="nav-color">
                         <h2>MUSICALS</h2>
                     </a>
                     <a>
                         <h2 id="nav-color">|</h2>
                     </a>
-                    <a href="Concerten.php" id="nav-color">
+                    <a href="Concerten.php" class="menuItem" id="nav-color">
                         <h2>CONCERTEN</h2>
                     </a>
                     <a>
                         <h2 id="nav-color">|</h2>
                     </a>
-                    <a href="events.php" id="nav-color">
+                    <a href="events.php" class="menuItem" id="nav-color">
                         <h2>EVENTS</h2>
                     </a>
 
                     </a>
                 </div>
+                <!-- Hamburger -->
+                <button class="hamburger">
+                    <!-- material icons https://material.io/resources/icons/ -->
+                    <i class="menuIcon material-icons">menu</i>
+                    <i class="closeIcon material-icons">close</i>
+                </button>
                 <!-- show/hide login button -->
                 <div id="login">
                     <?php if (!isset($_SESSION['loggedInUser'])) {
@@ -88,8 +95,7 @@ try {
                     ?>
                     <!-- log out confirmation -->
                     <script language="JavaScript">
-                        function confirmLogout()
-                        {
+                        function confirmLogout() {
 
                             if (!confirm("Are you sure you want to log out?")) {
 
@@ -116,7 +122,7 @@ try {
             <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
             </a>
         </div>
-        <footer>
+        <footer contentEditable>
             <a href="contact.php" id="contact-color">
                 <h2>Contact</h2>
             </a>

@@ -3,31 +3,39 @@
     src: url(../Fonts/Geo-Regular.ttf);
 }
 
-#FilmsCurrentPage{
-    text-decoration:underline;
+#FilmsCurrentPage {
+    text-decoration: underline;
 }
-#body{
+
+#body {
     display: flex;
     height: 480px;
-   justify-content: center;
-   margin-top: 2.5%;
+    justify-content: center;
+    margin-top: 2.5%;
+    flex-wrap: wrap;
 }
-#body-color{
-    padding: 15px ;
+
+#body-color {
+    padding: 15px;
 }
-#img-border{
+
+#img-border {
     border: 5px;
     border-color: #471609;
     border-width: 15px;
     border-style: solid;
+    display: flex;
 }
-#SeeMoreImg{
-    position:absolute;
+
+#SeeMoreImg {
+    position: absolute;
     margin-left: 85%;
     margin-top: 8%;
+    bottom: 5px;
     height: 50px;
     width: 220px;
 }
-#SeeMoreStyle{
+
+#SeeMoreStyle {
     text-decoration: none;
 }

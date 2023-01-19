@@ -12,6 +12,7 @@
     height: 480px;
    justify-content: center;
    margin-top: 2.5%;
+   flex-wrap: wrap;
 }
 #body-color{
     padding: 15px ;
@@ -23,14 +24,3 @@
     border-style: solid;
 }
 
-#SeeMoreImg{
-    position:absolute;
-    margin-left: 85%;
-    margin-top: 8%;
-    height: 50px;
-    width: 220px;
-}
-#SeeMoreStyle{
-    text-decoration: none;
-}
- 
