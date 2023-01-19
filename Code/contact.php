@@ -1,6 +1,6 @@
 <?php
 
-$localhost = 'localhost';
+$host = 'localhost';
 $db = 's168308_project';
 $user = 'bit_academy';
 $pass = 'bit_academy';
@@ -20,16 +20,18 @@ try {
 }
 
 if (isset($_POST['verzenden'])) {
+    contact($naam, $email, $bericht, $pdo, $dsn, $user, $pass);
+}
+
+function contact($naam, $email, $bericht, $pdo, $dsn, $user, $pass)
+{
     $naam = $_POST['contactnaam'];
     $email = $_POST['contactemail'];
     $bericht = $_POST['contactbericht'];
 
     $pdo = new PDO($dsn, $user, $pass);
 
-    contact($naam, $email, $bericht, $pdo);
-}
-function contact($naam, $email, $bericht, $pdo)
-{
+
     $sql = "INSERT INTO contact(naam, email, bericht)
         VALUES (?, ?, ?);";
 
@@ -50,7 +52,7 @@ function contact($naam, $email, $bericht, $pdo)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
     <link rel="stylesheet" href="style/contact.css">
-    <script src="javascript/Index.js"></script>1q
+    <script src="javascript/contact.js"></script>
     <title>Sigma Media</title>
 </head>
 
@@ -96,15 +98,15 @@ function contact($naam, $email, $bericht, $pdo)
     </header>
     <form id="contactform" method="post">
         <div id="top">
-            <input type="text" id="InputTop" name="contactnaam" placeholder="Vul hier uw naam in">
-            <input type="email" id="InputTop" name="contactemail" placeholder="Vul hier uw email-adress in">
+            <input type="text" id="inputtop" name="contactnaam" placeholder="Vul hier uw naam in" required>
+            <input type="email" id="inputtop" name="contactemail" placeholder="Vul hier uw email-adress in" required>
         </div>
         <div id="center">
-            <textarea name="contactbericht" id="InputCenter" cols="30" rows="10" placeholder="Vul hier uw bericht in..."></textarea>
+            <textarea name="contactbericht" id="inputcenter" cols="30" rows="10" placeholder="Vul hier uw bericht in..." required></textarea>
         </div>
         <div id="bottem">
-            <h3 id="Inputbottem"> wij zijn telefonish bereikbaar op +06 8008135</h3>
-            <input type="submit" id="Inputbottem" value="verzenden" name="verzenden">
+            <h3 id="inputbottem"> wij zijn telefonish bereikbaar op +06 8008135</h3>
+            <input type="submit" id="inputbottem" value="verzenden" name="verzenden" onclick="contactalert()">
         </div>
     </form>
     <footer>
