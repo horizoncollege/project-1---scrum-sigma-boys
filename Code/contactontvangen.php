@@ -1,46 +1,6 @@
 <?php
-
-$localhost = 'localhost';
-$db = 's168308_project';
-$user = 'bit_academy';
-$pass = 'bit_academy';
-$charset = 'utf8mb4';
-
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
-
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-} catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
-}
-
-if (isset($_POST['verzenden'])) {
-    $naam = $_POST['contactnaam'];
-    $email = $_POST['contactemail'];
-    $bericht = $_POST['contactbericht'];
-
-    $pdo = new PDO($dsn, $user, $pass);
-
-    contact($naam, $email, $bericht, $pdo);
-}
-function contact($naam, $email, $bericht, $pdo)
-{
-    $sql = "INSERT INTO contact(naam, email, bericht)
-        VALUES (?, ?, ?);";
-
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->execute([$naam, $email, $bericht]);
-
-    header('Refresh:1; url=contactontvangen.php');
-}
+//header('Refresh:5; url=index.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,10 +9,8 @@ function contact($naam, $email, $bericht, $pdo)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/contact.css">
-    <script src="javascript/Index.js"></script>1q
-    <title>Sigma Media</title>
-</head>
+    <link rel="stylesheet" href="style/contact.css?1">
+    <title>Ontvangen</title>
 
 <body>
     <header class="Header">
@@ -94,19 +52,7 @@ function contact($naam, $email, $bericht, $pdo)
             </div>
         </div>
     </header>
-    <form id="contactform" method="post">
-        <div id="top">
-            <input type="text" id="InputTop" name="contactnaam" placeholder="Vul hier uw naam in">
-            <input type="email" id="InputTop" name="contactemail" placeholder="Vul hier uw email-adress in">
-        </div>
-        <div id="center">
-            <textarea name="contactbericht" id="InputCenter" cols="30" rows="10" placeholder="Vul hier uw bericht in..."></textarea>
-        </div>
-        <div id="bottem">
-            <h3 id="Inputbottem"> wij zijn telefonish bereikbaar op +06 8008135</h3>
-            <input type="submit" id="Inputbottem" value="verzenden" name="verzenden">
-        </div>
-    </form>
+    <h1 id="ontvangen">Uw contact is ontvangen we zullen zo snel mogelijk reageren! U wordt zo weer terug naar de Thuispagina gestuurd</h1>
     <footer>
         <a href="contact.php" id="contact-color">
             <h2>Contact</h2>
