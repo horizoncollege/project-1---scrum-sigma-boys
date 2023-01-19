@@ -45,3 +45,11 @@ VALUES
 ('EVENT', 'COMIC CON', 50, 'UTRECHT', '2 DAGEN', 'Op 24 & 25 juni 2023 organiseren wij de eerste Heroes Dutch Comic Con Summer Edition! Altijd al wereldberoemde acteurs en Comic Artists willen ontmoeten of ben je fan van series, films, esports of cosplay? Heroes Dutch Comic Con heeft het allemaal, én meer! Bereid je voor op een geweldig weekend vol vermaak, bijzondere ontmoetingen, deel jouw passies met andere of maak nieuwe vrienden!'),
 ('MUSICAL',  'Soldaat van Oranje',  37,'De TheaterHangaar, Katwijk', '154 minuten', 'Verdoening van je geld, je kan dit maar beter gewoon niet kopen'),
 ('CONCERT', 'Snoop dogg', 69, 'Ziggo Dome, Amsterdam', '5 uur', 'Een Concert gegeven door de one and only Snoop Dogg');
+
+CREATE TABLE contact (
+    id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    naam VARCHAR(20) NOT NULL,
+    email VARCHAR(64) NOT NULL,
+    bericht VARCHAR(10000) NOT NULL
+);
+
