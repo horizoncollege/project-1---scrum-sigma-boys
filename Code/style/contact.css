@@ -4,18 +4,19 @@
 }
 
 #contactform{
-    position:relative;
+     position:relative; 
     border: 5px;
-    border-color: #471609;
+     border-color: #471609; 
     border-width: 15px;
     border-style: solid;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #471609; 
+     background-color: #471609;  
     width: 70%;
     height:50%;
     margin-left: 10%;
+    min-width: 70%;
 }
 #top{
     display: flex;
@@ -30,7 +31,8 @@
 span{
     color:#019482;
 }
-#InputTop{ 
+#inputtop{
+    
     width: 50%;
     height: 100%;
     font-family: Geo;
@@ -41,11 +43,11 @@ span{
     border-width: 100%;
 }
 
-#InputTop:first-child{
+#inputtop:first-child{
     margin-right: 5px;
 }
 
-#InputCenter{
+#inputcenter{
     width: 100%;
     height: 100%;
     font-family: Geo;
@@ -55,7 +57,7 @@ span{
     resize: none;
     padding: 2px;
 }
-#Inputbottem{
+#inputbottem{
     margin-top: 15px;
     font-family: Geo;
     font-size: 100%;
@@ -64,10 +66,9 @@ span{
     background-color: white;
     background: #D9D9D9;
 }
-#Inputbottem:first-child{
+#inputbottem:first-child{
     margin-right: 5px;
 }
-
 
 button:hover{
     cursor: pointer;
