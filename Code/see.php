@@ -20,9 +20,31 @@ try {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
+$stmt = $pdo->prepare("SELECT * FROM tickets where ticketType='FILM'");
+$stmt->execute();
+$film_array = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+function echoFilms()
+{
+    global $film_array;
+    foreach ($film_array as $key) {
+        echo
+        '<tr>
+            <td>';
+        echo $key->ticketName;
+        echo '</td>
+            <td>';
+        echo $key->Location;
+        echo '</td>
+            <td><a class="details" href="detail.php?id=';
+        echo $key->id;
+        echo '">details</a></td>
+        </tr>';
+    }
+}
+
+
 session_start();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -40,10 +62,8 @@ session_start();
 
 <body>
 
-
-    <!-- Top Navigation Menu -->
     <div class="topnav">
-        <a href="index.php" class="active">SIGMA MEDIA</a>
+        <a href="index.php" class="active">Sigma media</a>
         <!-- Navigation links (hidden by default) -->
         <div id="myLinks">
             <?php if (!isset($_SESSION['loggedInUser'])) {
@@ -54,8 +74,8 @@ session_start();
             }
             ?>
             <a href="film.php">FILMS</a>
-            <a href="musical.php">MUSICALS</a>
-            <a href="Concerten.php" id="ConcertenCurrentPage">CONCERTEN</a>
+            <a href="musical.php" id="MusicalCurrentPage">MUSICALS</a>
+            <a href="Concerten.php">CONCERTEN</a>
             <a href="events.php">EVENTS</a>
             <?php if (!isset($_SESSION['loggedInUser'])) {
                 echo ' <a href="login.php">INLOGGEN</a>';
@@ -82,7 +102,7 @@ session_start();
                 </div>
                 <div id="nav-bar">
                     <a href="film.php" id="nav-color">
-                        <h2>FILMS</h2>
+                        <h2 id="FilmsCurrentPage">FILMS</h2>
                     </a>
                     <a>
                         <h2 id="nav-color">|</h2>
@@ -94,7 +114,7 @@ session_start();
                         <h2 id="nav-color">|</h2>
                     </a>
                     <a href="Concerten.php" id="nav-color">
-                        <h2 id="ConcertenCurrentPage">CONCERTEN</h2>
+                        <h2>CONCERTEN</h2>
                     </a>
                     <a>
                         <h2 id="nav-color">|</h2>
@@ -106,48 +126,47 @@ session_start();
                     </a>
                 </div>
                 <div id="login">
-                    <?php if (!isset($_SESSION['loggedInUser'])) {
-                        echo '<a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
+                    <div id="login">
+                        <?php if (!isset($_SESSION['loggedInUser'])) {
+                            echo '<a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
-                    }
-                    if (isset($_SESSION['loggedInUser'])) {
-                        echo '<h1 id="nav-color">' . $_SESSION['user'] . '</h1>
+                        }
+                        if (isset($_SESSION['loggedInUser'])) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '</h1>
                         <a href="logout.php" id="log" onClick="return confirmLogout()"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
-                    }
-                    ?>
-                    <a href="Hobby.html" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
-                    </a>
-                    <script language="JavaScript">
-                        function confirmLogout() {
-
-                            if (!confirm("Are you sure you want to log out?")) {
-
-                                return false;
-
-                            }
                         }
-                    </script>
-                </div>
+                        ?>
+                        <a href="Hobby.html" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
+                        </a>
+                        <script language="JavaScript">
+                            function confirmLogout() {
 
-            </div>
+                                if (!confirm("Are you sure you want to log out?")) {
+
+                                    return false;
+
+                                }
+                            }
+                        </script>
+                    </div>
+
+                </div>
 
 
         </header>
-        <div id="body">
-            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
-            </a>
-            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
-            </a>
-            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
-            </a>
-            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
-            </a>
-        </div>
-        <h3>
-            <a href="Hobby.html" id="SeeMoreStyle"> <img src="Img/arrow.png" alt="shopping_button" id="SeeMoreImg">
-            </a>
-        </h3>
+        <table>
+            <tr>
+                <th>title</th>
+                <th>location</th>
+                <th>More details</th>
+            </tr>
+
+            <tr>
+                <?php echofilms($stmt); ?>
+            </tr>
+        </table>
+
         <footer>
             <a href="contact.php" id="contact-color">
                 <h2>Contact</h2>
