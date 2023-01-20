@@ -10,14 +10,13 @@
     background-color: #471609;
     width: 70%;
     height: 550px;
-    width: 1450px;
     margin-left: 10%;
 }
 
 #lettters {
     display: flex;
     margin-left: 20%;
-    width: 900px;
+    width: 67%;
     height: 100px;
     margin-top: 1%;
     font-family: Geo;
@@ -29,7 +28,7 @@
 #inloggen {
     display: flex;
     margin-left: 20%;
-    width: 900px;
+    width: 67%;
     height: 100px;
     margin-top: 1%;
     font-family: Geo;
@@ -43,9 +42,8 @@
 #create {
     display: flex;
     margin-left: 30%;
-    width: 580px;
+    width: 50%; 
     height: 150px;
-    padding: 15px;
     margin-top: 1%;
     font-size: 50px;
     flex-wrap: wrap;
@@ -65,4 +63,42 @@ color: white;
 position: absolute;
 display: flex;
 margin-left: 30%;
+}
+
+@media only screen and (max-width: 1199px) {
+    #create {
+        display: flex;
+        margin-left: 20%;
+        width: 67%; 
+        height: 150px;
+        margin-top: 1%;
+        font-size: 50px;
+        flex-wrap: wrap;
+        font-family: Geo;
+        justify-content: center;
+        background: #D9D9D9;
+        color: black;
+    }
+    #Formcontainer {
+        position: static;
+        display: flex;
+        flex-direction: column;
+        background-color: #471609;
+        width: 70%;
+        height: 550px;
+        margin-left: 10%;
+    }
+    
+    #lettters {
+        font-size: 28px;
+    }
+    
+    #inloggen {
+        font-size: 35px;
+    }
+    
+    #create {
+        font-size: 35px;
+    }
+    
 }

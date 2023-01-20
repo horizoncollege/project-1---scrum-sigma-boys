@@ -159,7 +159,7 @@ try {
             <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
             </a>
         </div>
-        <footer contentEditable>
+        <footer>
             <a href="contact.php" id="contact-color">
                 <h2>Contact</h2>
             </a>

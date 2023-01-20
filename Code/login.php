@@ -111,7 +111,7 @@ try {
             $_SESSION['loggedInUser'] = $user['username'];
         } else {
             $_SESSION['error'] = "<h1 id=denied>Gebruikersnaam of wachtwoord is ongeldig. </h1>";
-            echo '<script>alert("wrong Username/E-mail or password")</script> ';
+            echo '<script>alert("wrong Username or password")</script> ';
         }
     }
     // check if session is active and sends user to index
