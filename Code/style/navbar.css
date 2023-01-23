@@ -65,7 +65,10 @@ footer{
     text-decoration: none;
     background-color: #281005;
     margin-top: 220px;
+    /* Als je hier margin-bottom: 0px van maakt zit de bar altijd tegen de bottom aan */
     width: 1920px;
+    /* Maak hier 100% van, anders krijg je bij kleine beeldschermen dat je kan schuiven 
+        en op grote beeldschermen neem hij niet de hele onderkant in beslag*/
     font-family: 'Geo';
 }
 #contact-color{
@@ -73,3 +76,5 @@ footer{
     color: #ffffff;
     font-size: 35px;
 }
+
+
