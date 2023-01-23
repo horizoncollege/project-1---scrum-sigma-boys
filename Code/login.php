@@ -24,6 +24,8 @@ try {
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,6 +40,22 @@ try {
 </head>
 
 <body>
+
+    <div class="topnav">
+        <a href="index.php" class="active">Sigma media</a>
+        <!-- Navigation links (hidden by default) -->
+        <div id="myLinks">
+            <a href="film.php">FILMS</a>
+            <a href="musical.php" id="MusicalCurrentPage">MUSICALS</a>
+            <a href="Concerten.php">CONCERTEN</a>
+            <a href="events.php">EVENTS</a>
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
     <header class="Header">
         <div id="container">
             <div id="Sigma">
@@ -75,9 +93,15 @@ try {
 
     </header>
     <Form id="Formcontainer" method="post">
+
         <input type="text" id=lettters name="name" placeholder="Email-adres of gebruikersnaam">
         <input type="text" id=lettters name="pass" placeholder="Wachtwoord">
         <input type="submit" id=inloggen name="login" value="Inloggen">
+
+        <input type="text" id=lettters name="name" placeholder="gebruikersnaam" required>
+        <input type="password" id=lettters name="pass" placeholder="Wachtwoord" required>
+        <input type="submit" id=inloggen name="login" value="Inloggen" required>
+
         <a href="registratie.php" id=create>nog geen account? <span>account aanmaken</span> </a>
     </Form>
     <?php
@@ -110,7 +134,12 @@ try {
         if ($username == $user && $password == $ww) {
             $_SESSION['userlogin'] = $username;
         } else {
+
             echo "<h1 id='denied'>Invalide gebruikersnaam of wachtwoord combinatie</h1>";
+
+            $_SESSION['error'] = "<h1 id=denied>Gebruikersnaam of wachtwoord is ongeldig. </h1>";
+            echo '<script>alert("wrong Username or password")</script> ';
+
         }
     }
 

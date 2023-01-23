@@ -33,12 +33,28 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/registratie.css">
+    <link rel="stylesheet" href="style/login    .css">
     <script src="javascript/Index.js"></script>
     <title>Sigma Media</title>
 </head>
 
 <body>
+
+    <div class="topnav">
+        <a href="index.php" class="active">Sigma media</a>
+        <!-- Navigation links (hidden by default) -->
+        <div id="myLinks">
+            <a href="film.php">FILMS</a>
+            <a href="musical.php" id="MusicalCurrentPage">MUSICALS</a>
+            <a href="Concerten.php">CONCERTEN</a>
+            <a href="events.php">EVENTS</a>
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
     <header class="Header">
         <div id="container">
             <div id="Sigma">
@@ -76,9 +92,9 @@ try {
 
     </header>
     <Form id="Formcontainer" method="POST">
-        <input type="text" id=lettters name="user" placeholder="gebruikersnaam">
-        <input type="email" id=lettters name="email" placeholder="Email-adres ">
-        <input type="text" id=lettters name="pass" placeholder="Wachtwoord">
+        <input type="text" id=lettters name="user" placeholder="gebruikersnaam" required>
+        <input type="email" id=lettters name="email" placeholder="Email-adres " required>
+        <input type="text" id=lettters name="pass" placeholder="Wachtwoord" required>
         <input type="submit" id=inloggen name="Create" value="Account aanmaken">
     </Form>
     <?php
