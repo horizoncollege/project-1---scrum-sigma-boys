@@ -168,8 +168,8 @@ function echoMusical() {
                 </div>
 
                 <div id="login">
-                    <a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
-                    </a>
+                    <!-- <a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
+                    </a> -->
 
                 <!-- Hamburger -->
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
