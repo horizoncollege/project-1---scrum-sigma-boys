@@ -12,13 +12,15 @@ emailAddress varchar(255)
 );
 
 CREATE TABLE tickets (
+id int AUTO_INCREMENT PRIMARY KEY,
 ticketType varchar(255),
 ticketName varchar(255),
 Location varchar(255),
 price int,
-duration int,
+duration varchar(255),
 description longtext
 );
+
 
 CREATE TABLE orders (
 orderID int AUTO_INCREMENT PRIMARY KEY,
@@ -50,5 +52,4 @@ CREATE TABLE contact (
     email VARCHAR(64) NOT NULL,
     bericht VARCHAR(10000) NOT NULL
 );
-
 
