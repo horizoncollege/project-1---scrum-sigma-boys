@@ -34,7 +34,7 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="style/main.css">
     <script src="javascript/Index.js"></script>
     <title>Sigma Media</title>
 </head>
@@ -62,7 +62,7 @@ try {
                 echo ' <a href="login.php">INLOGGEN</a>';
             }
             if (isset($_SESSION['loggedInUser'])) {
-                echo ' <a href="logout.php">UITLOGGEN</a>';
+                echo ' <a href="logout.php" onClick="return confirmLogout()">UITLOGGEN</a>';
             }
 
             ?>
