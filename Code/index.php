@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $host = 'localhost';
 $db   = 's168308_project';
 $user = 's168308_Project';
@@ -20,63 +22,8 @@ try {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-//gets info from db
-$querySelectAllTickets = $pdo->prepare("SELECT * FROM tickets");
-$querySelectAllTickets->execute();
-$AllTickets_array = $querySelectAllTickets->fetchAll(PDO::FETCH_OBJ);
-
-$querySelectFilmTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'FILM' ORDER BY id ASC LIMIT 1;");
-$querySelectFilmTickets->execute();
-$FilmTickets_array = $querySelectFilmTickets->fetchAll(PDO::FETCH_OBJ);
-
-$querySelectConcertTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'CONCERT' ORDER BY id ASC LIMIT 1;");
-$querySelectConcertTickets->execute();
-$ConcertTickets_array = $querySelectConcertTickets->fetchAll(PDO::FETCH_OBJ);
-
-$querySelectMusicalTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'MUSICAL' ORDER BY id ASC LIMIT 1;");
-$querySelectMusicalTickets->execute();
-$MusicalTickets_array = $querySelectMusicalTickets->fetchAll(PDO::FETCH_OBJ);
-
-$querySelectEventTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'EVENT' ORDER BY id ASC LIMIT 1;");
-$querySelectEventTickets->execute();
-$EventTickets_array = $querySelectEventTickets->fetchAll(PDO::FETCH_OBJ);
 
 
-function echoFilm() {
-    global $FilmTickets_array;
-    foreach ($FilmTickets_array as $key) {
-        echo '<a href="detailPaginas.php?id=' ;
-        echo $key->id;
-        echo '"id="body-color">';
-    }
-}
-
-function echoConcert() {
-    global $ConcertTickets_array;
-    foreach ($ConcertTickets_array as $key) {
-        echo '<a href="detailPaginas.php?id=' ;
-        echo $key->id;
-        echo '"id="body-color">';
-    }
-}
-
-function echoEvent() {
-    global $EventTickets_array;
-    foreach ($EventTickets_array as $key) {
-        echo '<a href="detailPaginas.php?id=' ;
-        echo $key->id;
-        echo '"id="body-color">';
-    }
-}
-
-function echoMusical() {
-    global $MusicalTickets_array;
-    foreach ($MusicalTickets_array as $key) {
-        echo '<a href="detailPaginas.php?id=' ;
-        echo $key->id;
-        echo '"id="body-color">';
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -126,7 +73,13 @@ function echoMusical() {
             <i class="fa fa-bars"></i>
         </a>
     </div>
-    
+
+
+
+
+
+
+
     <header>
         <header class="Header">
             <div id="container">
@@ -160,11 +113,6 @@ function echoMusical() {
 
                     </a>
                 </div>
-
-                <div id="login">
-                    <!-- <a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
-                    </a> -->
-
                 <!-- Hamburger -->
                 <a href="javascript:void(0);" class="icon" onclick="myFunction()">
                     <i class="fa fa-bars"></i>
@@ -193,7 +141,6 @@ function echoMusical() {
                             }
                         }
                     </script>
-
                     <a href="shopping.php" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
                     </a>
                 </div>
@@ -203,13 +150,13 @@ function echoMusical() {
 
         </header>
         <div id="body">
-            <?php echoFilm()?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
+            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
             </a>
-            <?php echoMusical()?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
+            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
             </a>
-            <?php echoConcert()?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
+            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
             </a>
-            <?php echoEvent()?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
+            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
             </a>
         </div>
         <footer>
