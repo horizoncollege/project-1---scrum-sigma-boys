@@ -1,4 +1,3 @@
-
     * {
         border: 0;
         margin: 0;
@@ -93,7 +92,6 @@
     .topnav{
         display: none;
     }
-    
     @media only screen and (max-width: 1199px) {
         #container{
             display: none;
@@ -145,5 +143,3 @@
             color: white;
         }
     }
-    
-

@@ -20,7 +20,7 @@ try {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-$stmt = $pdo->prepare("SELECT * FROM tickets where ticketType='FILM'");
+$stmt = $pdo->prepare("SELECT * FROM tickets where ticketType='MUSICAL'");
 $stmt->execute();
 $film_array = $stmt->fetchAll(PDO::FETCH_OBJ);
 
@@ -102,13 +102,13 @@ session_start();
                 </div>
                 <div id="nav-bar">
                     <a href="film.php" id="nav-color">
-                        <h2 id="FilmsCurrentPage">FILMS</h2>
+                        <h2 >FILMS</h2>
                     </a>
                     <a>
                         <h2 id="nav-color">|</h2>
                     </a>
                     <a href="musical.php" id="nav-color">
-                        <h2>MUSICALS</h2>
+                        <h2 id="MusicalCurrentPage">MUSICALS</h2>
                     </a>
                     <a>
                         <h2 id="nav-color">|</h2>
