@@ -93,11 +93,6 @@ try {
 
     </header>
     <Form id="Formcontainer" method="post">
-
-        <input type="text" id=lettters name="name" placeholder="Email-adres of gebruikersnaam">
-        <input type="text" id=lettters name="pass" placeholder="Wachtwoord">
-        <input type="submit" id=inloggen name="login" value="Inloggen">
-
         <input type="text" id=lettters name="name" placeholder="gebruikersnaam" required>
         <input type="password" id=lettters name="pass" placeholder="Wachtwoord" required>
         <input type="submit" id=inloggen name="login" value="Inloggen" required>
@@ -139,7 +134,6 @@ try {
 
             $_SESSION['error'] = "<h1 id=denied>Gebruikersnaam of wachtwoord is ongeldig. </h1>";
             echo '<script>alert("wrong Username or password")</script> ';
-
         }
     }
 
