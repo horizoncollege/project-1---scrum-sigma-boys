@@ -33,7 +33,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/concerten.css">
+    <link rel="stylesheet" href="style/Main.css">
     <script src="javascript/Index.js"></script>
     <title>Sigma Media</title>
 </head>
@@ -46,7 +46,7 @@ session_start();
         <a href="index.php" class="active">SIGMA MEDIA</a>
         <!-- Navigation links (hidden by default) -->
         <div id="myLinks">
-        <?php if (!isset($_SESSION['loggedInUser'])) {
+            <?php if (!isset($_SESSION['loggedInUser'])) {
                 echo '<h1 id= "nav-color">hallo gebruiker</h1>';
             }
             if (isset($_SESSION['loggedInUser'])) {
@@ -61,7 +61,7 @@ session_start();
                 echo ' <a href="login.php">INLOGGEN</a>';
             }
             if (isset($_SESSION['loggedInUser'])) {
-                echo ' <a href="logout.php">UITLOGGEN</a>';
+                echo ' <a href="logout.php" onClick="return confirmLogout()">UITLOGGEN</a>';
             }
 
             ?>
@@ -88,7 +88,7 @@ session_start();
                         <h2 id="nav-color">|</h2>
                     </a>
                     <a href="musical.php" id="nav-color">
-                        <h2 id="MusicalCurrentPage">MUSICALS</h2>
+                        <h2>MUSICALS</h2>
                     </a>
                     <a>
                         <h2 id="nav-color">|</h2>
@@ -106,10 +106,28 @@ session_start();
                     </a>
                 </div>
                 <div id="login">
-                    <a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
-                    </a>
+                    <?php if (!isset($_SESSION['loggedInUser'])) {
+                        echo '<a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
+                        </a>';
+                    }
+                    if (isset($_SESSION['loggedInUser'])) {
+                        echo '<h1 id="nav-color">' . $_SESSION['user'] . '</h1>
+                        <a href="logout.php" id="log" onClick="return confirmLogout()"> <img src="Img/admin.png" alt="Login_button">
+                        </a>';
+                    }
+                    ?>
                     <a href="Hobby.html" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
                     </a>
+                    <script language="JavaScript">
+                        function confirmLogout() {
+
+                            if (!confirm("Are you sure you want to log out?")) {
+
+                                return false;
+
+                            }
+                        }
+                    </script>
                 </div>
 
             </div>
