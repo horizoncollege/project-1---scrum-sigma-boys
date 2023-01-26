@@ -77,9 +77,6 @@ try {
 
 
 
-
-
-
     <header>
         <header class="Header">
             <div id="container">
@@ -120,13 +117,19 @@ try {
                 <!-- show/hide login button -->
                 <div id="login">
                     <?php if (!isset($_SESSION['loggedInUser'])) {
-                        echo '<a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
+                        echo '<a href="login.php" id="login-Guest"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
                     }
                     if (isset($_SESSION['loggedInUser'])) {
-                        echo '<h1 id="nav-color">' . $_SESSION['user'] . '</h1>
-                        <a href="logout.php" id="log" onClick="return confirmLogout()"> <img src="Img/admin.png" alt="Login_button">
-                        </a>';
+                        echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                        <div class="dropdown">
+                        <img src="Img/admin.png" id="login" alt="Login_button">
+                            <div class="dropdown-content">
+                                <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                <a href="CreateEvent.php">create event</a>
+                                <a href="#">Add admin</a>
+                            </div>
+                        </div>';
                     }
 
                     ?>
@@ -141,8 +144,14 @@ try {
                             }
                         }
                     </script>
-                    <a href="shopping.php" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
-                    </a>
+                              <?php if (!isset($_SESSION['loggedInUser'])) {
+                        echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button">';
+                    }
+                    if (isset($_SESSION['loggedInUser'])) {
+                        echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button">';
+                    }
+
+                    ?>
                 </div>
 
             </div>

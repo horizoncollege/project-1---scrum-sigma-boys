@@ -144,7 +144,7 @@ session_start();
             </a>
         </div>
         <h3>
-            <a href="Hobby.html" id="SeeMoreStyle"> <img src="Img/arrow.png" alt="shopping_button" id="SeeMoreImg">
+            <a href="seeMusical.php" id="SeeMoreStyle"> <img src="Img/arrow.png" alt="shopping_button" id="SeeMoreImg">
             </a>
         </h3>
         <footer>

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $host = 'localhost';
 $db   = 's168308_project';
 $user = 's168308_Project';
@@ -20,7 +22,6 @@ try {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-session_start();
 
 
 ?>
@@ -33,13 +34,12 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/Main.css">
+    <link rel="stylesheet" href="style/main.css">
     <script src="javascript/Index.js"></script>
     <title>Sigma Media</title>
 </head>
 
 <body>
-
 
     <!-- Top Navigation Menu -->
     <div class="topnav">
@@ -52,10 +52,11 @@ session_start();
             if (isset($_SESSION['loggedInUser'])) {
                 echo '<h1 id= "nav-color"> Welkom ' . $_SESSION['user'] . '</h1>';
             }
+
             ?>
             <a href="film.php">FILMS</a>
             <a href="musical.php">MUSICALS</a>
-            <a href="Concerten.php" id="ConcertenCurrentPage">CONCERTEN</a>
+            <a href="Concerten.php">CONCERTEN</a>
             <a href="events.php">EVENTS</a>
             <?php if (!isset($_SESSION['loggedInUser'])) {
                 echo ' <a href="login.php">INLOGGEN</a>';
@@ -65,12 +66,16 @@ session_start();
             }
 
             ?>
+
         </div>
         <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
     </div>
+
+
+
 
     <header>
         <header class="Header">
@@ -80,44 +85,55 @@ session_start();
                         <h1>SIGMA MEDIA</h1>
                     </a>
                 </div>
-                <div id="nav-bar">
-                    <a href="film.php" id="nav-color">
+                <div id="nav-bar" class="menu">
+                    <a href="film.php" class="menuItem" id="nav-color">
                         <h2>FILMS</h2>
                     </a>
                     <a>
-                        <h2 id="nav-color">|</h2>
+                        <h2 class="line" id="nav-color">|</h2>
                     </a>
-                    <a href="musical.php" id="nav-color">
+                    <a href="musical.php" class="menuItem" id="nav-color">
                         <h2>MUSICALS</h2>
                     </a>
                     <a>
-                        <h2 id="nav-color">|</h2>
+                        <h2 class="line" id="nav-color">|</h2>
                     </a>
-                    <a href="Concerten.php" id="nav-color">
-                        <h2 id="ConcertenCurrentPage">CONCERTEN</h2>
+                    <a href="Concerten.php" class="menuItem" id="nav-color">
+                        <h2>CONCERTEN</h2>
                     </a>
                     <a>
-                        <h2 id="nav-color">|</h2>
+                        <h2 class="line" id="nav-color">|</h2>
                     </a>
-                    <a href="events.php" id="nav-color">
+                    <a href="events.php" class="menuItem" id="nav-color">
                         <h2>EVENTS</h2>
                     </a>
 
                     </a>
                 </div>
+                <!-- Hamburger -->
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <!-- show/hide login button -->
                 <div id="login">
                     <?php if (!isset($_SESSION['loggedInUser'])) {
-                        echo '<a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
+                        echo '<a href="login.php" id="login-Guest"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
                     }
                     if (isset($_SESSION['loggedInUser'])) {
-                        echo '<h1 id="nav-color">' . $_SESSION['user'] . '</h1>
-                        <a href="logout.php" id="log" onClick="return confirmLogout()"> <img src="Img/admin.png" alt="Login_button">
-                        </a>';
+                        echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                        <div class="dropdown">
+                        <img src="Img/admin.png" id="login" alt="Login_button">
+                            <div class="dropdown-content">
+                                <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                <a href="#">create event</a>
+                                <a href="#">Add admin</a>
+                            </div>
+                        </div>';
                     }
+
                     ?>
-                    <a href="Hobby.html" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
-                    </a>
+                    <!-- log out confirmation -->
                     <script language="JavaScript">
                         function confirmLogout() {
 
@@ -128,6 +144,14 @@ session_start();
                             }
                         }
                     </script>
+                              <?php if (!isset($_SESSION['loggedInUser'])) {
+                        echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button">';
+                    }
+                    if (isset($_SESSION['loggedInUser'])) {
+                        echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button">';
+                    }
+
+                    ?>
                 </div>
 
             </div>
@@ -135,19 +159,7 @@ session_start();
 
         </header>
         <div id="body">
-            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
-            </a>
-            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
-            </a>
-            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
-            </a>
-            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
-            </a>
         </div>
-        <h3>
-            <a href="seeconcert.php" id="SeeMoreStyle"> <img src="Img/arrow.png" alt="shopping_button" id="SeeMoreImg">
-            </a>
-        </h3>
         <footer>
             <a href="contact.php" id="contact-color">
                 <h2>Contact</h2>

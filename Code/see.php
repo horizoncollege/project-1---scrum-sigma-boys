@@ -36,7 +36,7 @@ function echoFilms()
             <td>';
         echo $key->Location;
         echo '</td>
-            <td><a class="details" href="detail.php?id=';
+            <td><a class="details" href="detailPaginas.php?id=';
         echo $key->id;
         echo '">details</a></td>
         </tr>';

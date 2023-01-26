@@ -12,13 +12,21 @@
 
     #login {
         display: flex;
+        position: absolute;
         padding: 5%;
-        margin-left: 20%;
-        margin-top: 2%;
+        margin-left: 70%;
         height: 80px;
         padding: 15px;
     }
 
+    #mandje{
+        display: flex;
+        position: absolute;
+        padding: 5%;
+        margin-left: 350%;
+        height: 80px;
+        padding: 15px;
+    }
     #nav-bar {
         display: flex;
         justify-content: center;
@@ -35,7 +43,13 @@
     #nav-color {
         color: #b11a09;
     }
-
+    #login-Guest{
+        width: 5%;
+        position: absolute;
+        height: 80px;
+        margin-top: 50%;
+        
+    }
     #log {
         font-family: Geo;
         color: #b11a09;
@@ -67,7 +81,13 @@
     h2 {
         padding: 5px;
     }
-
+    #mandje-user{
+        width: 5%;
+        position: absolute;
+        height: 80px;
+        margin-top: 5%;
+        margin-left: 190%;
+    }
     footer {
         position: fixed;
         bottom: 0px;
