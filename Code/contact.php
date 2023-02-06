@@ -96,6 +96,7 @@ function contact($naam, $email, $bericht, $pdo, $dsn, $user, $pass)
             </div>
         </div>
     </header>
+    <h1 id="contacttitel">CONTACT</h1>
     <form id="contactform" method="post">
         <div id="top">
             <input type="text" id="inputtop" name="contactnaam" placeholder="Vul hier uw naam in" required>
