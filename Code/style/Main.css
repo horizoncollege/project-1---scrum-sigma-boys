@@ -143,6 +143,12 @@ table, th, td, #edit{
     height: 8%;
     margin-bottom: 1%;
 }
+#fileToUpload{
+    margin-left:1%;
+    margin-right:1%;
+    height: 8%;
+    margin-bottom: 1%;
+}
 
   /* Links inside the dropdown */
   .dropdown-content a {

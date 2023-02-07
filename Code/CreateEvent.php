@@ -155,7 +155,7 @@ try {
 
     </header>
     <div id="body">
-        <form method="post" action="insert.php" id="CreateEvent">
+        <form method="post" action="insert.php" id="CreateEvent" enctype="multipart/form-data">
             <label id=titleFlex for="title" >Titel</label>
             <input type="text" id=inputFlex name="title" required>
             <label id=titleFlex for="Media" required>Type evenement</label>
@@ -175,6 +175,9 @@ try {
             <textarea name="omschrijving" id=inputFlex cols="30" rows="10" required></textarea>
             <label for="datum_uitkomst" id=titleFlex>Datum van uitkomst</label>
             <input type="date" id=inputFlex name="datum" required>
+            <label id=titleFlex for="duur">Type hier A.U.B the file naam zodat hij zal werken(Warning als de image niet 320X480 is zal hij niet passen in de box)</label>
+            <input id=inputFlex type="text" name="imageName" required>
+            <input type="file" name="fileToUpload" id="fileToUpload" required>
             <input type="submit" value="Create" id="create" name="Create">
 
         </form>

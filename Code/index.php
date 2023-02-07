@@ -184,7 +184,7 @@ try {
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="#">Add admin</a>
+                                <a href="testin.php">Add admin</a>
                             </div>
                         </div>';
                     }
