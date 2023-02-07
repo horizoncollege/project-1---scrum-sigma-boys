@@ -27,15 +27,16 @@ $location = $_POST['locatie'];
 $omschr = $_POST['omschrijving'];
 $type = $_POST['media'];
 $price = $_POST['price'];
+$date = $_POST['datum'];
 
 $pdo = new PDO($dsn, $user, $pass);
 
 
-$sql = "INSERT INTO tickets(ticketType, ticketName, Location, price, Duration, description)
-  VALUES (?, ?, ?, ?, ?, ?);";
+$sql = "INSERT INTO tickets(ticketType, ticketName, Location, price, Duration, description, datum)
+  VALUES (?, ?, ?, ?, ?, ?,?);";
 
 $stmt = $pdo->prepare($sql);
 
-$stmt->execute([$type, $title, $location, $price, $duration, $omschr]);
+$stmt->execute([$type, $title, $location, $price, $duration, $omschr, $date]);
 header('Refresh:0; url=index.php');
 ?>
