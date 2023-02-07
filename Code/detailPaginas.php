@@ -65,6 +65,18 @@ function getDescription()
     return $ticket->description;
 }
 
+function getPoster()
+{
+    global $ticket;
+    return $ticket->poster;
+}
+
+function getDatum()
+{
+    global $ticket;
+    return $ticket->datum;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -129,7 +141,7 @@ function getDescription()
             <h1 id="ticketTitel"><?php echo getTitle() ?></h1>
             <div id="detailItems">
                 <div id="imagePlacing">
-                    <img class="poster" src="Img/placeholder.png" alt="shopping_button" id="img-border">
+                    <img class="poster" src="Img/<?php echo getPoster() ?>" alt="shopping_button" id="img-border">
                 </div>
                 <div id="textPlacing">
                     <p>Prijs:</p>
@@ -137,13 +149,15 @@ function getDescription()
                     <p>Duur:</p>
                     <p id="ticketDetails"><?php echo getDuration(); ?></p><br>
                     <p>Locatie: </p>
-                    <p id="ticketDetails"><?php echo getLocation(); ?>
+                    <p id="ticketDetails"><?php echo getLocation(); ?></p><br>
+                    <p>Datum: </p>
+                    <p id="ticketDetails"><?php echo getdatum(); ?>
                 </div>
-                <br><br><br>
+                <br><br>
 
                 <div id="gettingDescriptionMargin">
                     <p> beschrijving:</p>
-                    <p id="ticketDetails" class="beschrijving"><?php echo getDescription() ?></p>
+                    <p id="ticketDetails" class="beschrijving"><?php echo getDescription() ?></p> <br>
                 </div>
 
             </div>
