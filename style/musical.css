@@ -1,0 +1,59 @@
+@font-face {
+    font-family: "Geo";
+    src: url(../Fonts/Geo-Regular.ttf);
+}
+
+#MusicalCurrentPage{
+    text-decoration:underline;
+}
+#body{
+    display: flex;
+    height: 480px;
+   justify-content: center;
+   margin-top: 2.5%;
+   flex-wrap: wrap;
+}
+#body-color{
+    padding: 15px ;
+}
+#img-border{
+    border: 5px;
+    border-color: #471609;
+    border-width: 15px;
+    border-style: solid;
+}
+
+#SeeMoreImg {
+    position: fixed;
+    margin-left: 86%;
+    margin-top: 8%;
+    bottom: 60px;
+    height: 50px;
+    width: 220px;
+}
+
+#SeeMoreStyle{
+    text-decoration: none;
+}
+@media only screen and (max-width: 1095PX) {
+    #SeeMoreImg {
+        position: fixed;
+        margin-left: 45%;
+        margin-top: 8%;
+        bottom: 60px;
+        height: 50px;
+        width: 220px;
+    }
+
+}
+@media only screen and (max-width: 400PX) {
+    #SeeMoreImg {
+        position: fixed;
+        margin-left: 45%;
+        margin-top: 8%;
+        bottom: 60px;
+        height: 50px;
+        width: 220px;
+    }
+
+}
