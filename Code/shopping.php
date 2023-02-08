@@ -1,9 +1,9 @@
 <?php
 
 $host = 'localhost';
-$db   = 's168308_project';
-$user = 's168308_Project';
-$pass = 'Pr0ject';
+$db = 's168308_project';
+$user = 'bit_academy';
+$pass = 'bit_academy';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -13,7 +13,6 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES   => false,
 ];
 
-// shows version of the database
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
@@ -93,32 +92,65 @@ session_start();
                     <a href="shopping.php" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
                     </a>
                 </div>
-
             </div>
-
-
         </header>
-        <div id="body">
-            <h1 id="mandje">Winkelmandje</h1>
-            <h2 id="backwall"></h2>
-            <h3 id=Shopping>
-                <h3 id="item">FILM - Minions: The rise of Gru</h3>
-                <h3 id=dash>-</h3>
-                <h3 id="aantal">aantal tickets</h3>
-                <img src="Img/min.png" id="min" alt="Ree" srcset="">
-                <h3 id="number">2</h3>
-                <img src="Img/plus.png" id="plus" alt="Ree" srcset="">
-            </h3>
-            <h1 id="mandje2">Winkelmandje</h1>
-            <h2 id="backwall2"></h2>
-            <h3 id=Shopping2>
-                <h3 id="item2">FILM - Minions: The rise of Gru</h3>
-                <h3 id=dash2>-</h3>
-                <h3 id="aantal2">aantal tickets</h3>
-                <img src="Img/min.png" id="min2" alt="Ree" srcset="">
-                <h3 id="number2">2</h3>
-                <img src="Img/plus.png" id="plus2" alt="Ree" srcset="">
-            </h3>
+
+
+        <?php
+        $totaal = 0;
+        $sql = "SELECT * FROM orderitems";
+        $result = $pdo->query($sql);
+        echo '<table class="tickets"> Tickets';
+        echo "<tr> <td>Naam<td/> <td>Prijs<td/> <td> Aantal</td> <tr/> ";
+        // $rows = $result->fetch();
+        // foreach ($rows as $key => $value) {
+        //     # code...
+        // }
+        while ($row = $result->fetch()) {
+            //print_r($row);
+            // $id = $row["orderID"];
+            $ticketprijs =  $row["prijs"];
+            $ticketaantal = $row["aantal"];
+            $totaal = $ticketprijs * $ticketaantal + $totaal;
+
+            echo "<td>" . $row["ordernaam"] . "<td/>
+                <td>" . "$" .  $row["prijs"] . "<td/>
+                <td>" . ' <form id="plusmin" method="post">
+                    <button name="minknop" id="minknop"value="" >  
+                        <img src="Img/min.png" id="min">
+                    </button>' . $row["aantal"]  .
+                '<button name="plusknop" id="plusknop" value="">
+                        <img src="Img/plus.png" id="plus"> 
+                    </button> 
+                </form>' . "<td/> <tr/>";
+
+            if (isset($_POST['plusknop'])) {
+                $updateplus = "UPDATE orderitems SET aantal = aantal + 1 WHERE orderID = :id";
+                $stmtplus = $pdo->prepare($updateplus);
+                $stmtplus->execute(['id' => $row["orderID"]]);
+            }
+            if (isset($_POST['minknop'])) {
+                $updatemin = "UPDATE orderitems SET aantal = aantal - 1 WHERE orderID = :id";
+                $stmtmin = $pdo->prepare($updatemin);
+                $stmtmin->execute(['id' => $row["orderID"]]);
+            }
+        }
+
+        echo "</table>";
+        echo "<table>";
+        echo "<tr> <td> Totaal Bedrag</td> <tr/> ";
+        echo "<td>$ $totaal <td/> <tr/>";
+        echo "</table>";
+
+        // if (isset($_POST['plusknop'])) {
+        //     $plusaantal = $ticketaantal + 1;
+        //     $updateplus = "UPDATE orderitems SET aantal = :plusaantal WHERE orderID = :id";
+        //     $stmtplus = $pdo->prepare($updateplus);
+        //     $stmtplus->execute(['plusaantal' => $plusaantal, 'id' => $row["orderID"]]);
+        //   }
+        ?>
+
+
         </div>
         <footer>
             <a href="contact.php" id="contact-color">
@@ -131,6 +163,8 @@ session_start();
                 <h2>Sales</h2>
             </a>
         </footer>
+
+
 </body>
 
 </html>
