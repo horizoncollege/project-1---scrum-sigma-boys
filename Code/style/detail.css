@@ -31,7 +31,6 @@ h1, h2, #ticketDetails , td, tr, p{
 .beschrijving {
     width: 70%;
     text-align: left;
-    margin-bottom: 3%;
 }
 
 #imagePlacing{
@@ -47,7 +46,6 @@ h1, h2, #ticketDetails , td, tr, p{
 
 #gettingDescriptionMargin {
     margin-top: 25%;
-    margin-bottom: 5%;
 }
 
 

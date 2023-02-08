@@ -24,6 +24,7 @@ try {
 
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -133,7 +134,7 @@ try {
             <i class="fa fa-bars"></i>
         </a>
     </div>
-    
+
     <header>
         <header class="Header">
             <div id="container">
@@ -178,15 +179,36 @@ try {
                         </a>';
                     }
                     if (isset($_SESSION['loggedInUser'])) {
-                        echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                        $username = $_SESSION['user'];
+                        $userquery = $pdo->prepare("SELECT * FROM users WHERE username = '$username'");
+                        $userquery->execute();
+                        $userAdmin = $userquery->fetch(PDO::FETCH_OBJ);
+
+                        function getPoster()
+                        {
+                            global $userAdmin;
+                            return $userAdmin->isAdmin;
+                        }
+                        $userAdminNumber = getPoster();
+                        if ($userAdminNumber == 1) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">
                         <img src="Img/admin.png" id="login" alt="Login_button">
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="testin.php">Add admin</a>
+                                <a href="testing">Add admin</a>
                             </div>
                         </div>';
+                        } elseif ($userAdminNumber == 0) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                            <div class="dropdown">
+                            <img src="Img/admin.png" id="login" alt="Login_button">
+                                <div class="dropdown-content">
+                                    <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                </div>
+                            </div>';
+                        }
                     }
 
                     ?>
@@ -201,28 +223,28 @@ try {
                             }
                         }
                     </script>
-                    <?php if (!isset($_SESSION['loggedInUser'])) {
-                        echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button">';
-                    }
-                    if (isset($_SESSION['loggedInUser'])) {
-                        echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button">';
-                    }
 
-                    ?>
                 </div>
+                <?php if (!isset($_SESSION['loggedInUser'])) {
+                    echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button">';
+                }
+                if (isset($_SESSION['loggedInUser'])) {
+                    echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button">';
+                }
 
+                ?>
             </div>
 
 
         </header>
         <div id="body">
-            <?php echoFilm()?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
+            <?php echoFilm() ?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
             </a>
-            <?php echoMusical()?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
+            <?php echoMusical() ?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
             </a>
-            <?php echoConcert()?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
+            <?php echoConcert() ?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
             </a>
-            <?php echoEvent()?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
+            <?php echoEvent() ?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
             </a>
         </div>
         <footer>

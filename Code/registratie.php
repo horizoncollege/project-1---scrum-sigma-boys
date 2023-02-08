@@ -20,6 +20,9 @@ try {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -88,17 +91,12 @@ try {
 
 
     </header>
-
-    <form action="send-email.php" method="post">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
-        <input type="submit" value="Send">
-    </form>
-
+    <Form id="Formcontainer" method="POST">
+        <input type="text" id=lettters name="user" placeholder="gebruikersnaam" required>
+        <input type="email" id=lettters name="email" placeholder="Email-adres " required>
+        <input type="text" id=lettters name="pass" placeholder="Wachtwoord" required>
+        <input type="submit" id=inloggen name="Create" value="Account aanmaken">
+    </Form>
     <?php
     if (isset($_POST['Create'])) {
         $name = $_POST['user'];

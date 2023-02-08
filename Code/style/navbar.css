@@ -81,12 +81,19 @@
     h2 {
         padding: 5px;
     }
+    #mandje{
+        width: 5%;
+        position: absolute;
+        height: 80px;
+        margin-top: 3%;
+        margin-left: 77%; 
+    }
     #mandje-user{
         width: 5%;
         position: absolute;
         height: 80px;
-        margin-top: 5%;
-        margin-left: 190%;
+        margin-top: 3%;
+        margin-left: 83%;
     }
     footer {
         position: fixed;

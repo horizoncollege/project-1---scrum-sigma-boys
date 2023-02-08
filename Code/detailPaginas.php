@@ -87,7 +87,7 @@ function getDatum()
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="style/Main.css">
     <link rel="stylesheet" href="style/detail.css">
     <script src="javascript/Index.js"></script>
     <title>Sigma Media</title>
