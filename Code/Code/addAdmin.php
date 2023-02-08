@@ -1,0 +1,255 @@
+<?php
+
+session_start();
+
+$host = 'localhost';
+$db   = 's168308_project';
+$user = 's168308_Project';
+$pass = 'Pr0ject';
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+
+// shows version of the database
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+}
+
+
+$Users = $pdo->prepare("SELECT * FROM users");
+$Users->execute();
+$AllUsersArray = $Users->fetchAll(PDO::FETCH_OBJ);
+
+function echoFilm()
+{
+    global $AllUsersArray;
+    foreach ($AllUsersArray  as $key) {
+        echo
+        '<tr> .
+            <td>';
+        echo $key->userID;
+        echo $key->username;
+        echo '</td>
+            <td>';
+
+        if ($key->isAdmin == 1) {
+            echo "Admin";
+        } else {
+            echo "User";
+        }
+        echo '</td> <td>';
+        if ($key->isAdmin == 0) {
+            echo '<form method="post">
+            <input type="submit" value="Make Admin" id=save name="Admin"> 
+            </form>';
+        } else {
+            echo'<form method="post">
+            <input type="submit" value="Make User" id=save name="User"> 
+            </form>';
+        }
+
+        '</td>';
+    }
+}
+if (isset($_POST['Admin'])) {
+    global $AllUsersArray;
+    $rights = 1;  
+    $sql = "UPDATE users SET isAdmin = ?  WHERE username = '?'";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$rights]);
+
+} else {
+    echo "<h1>deze shit werkt niet </h1>";
+}
+if (isset($_POST['User'])) {
+    $id = 0;
+    $sql = "UPDATE users SET isAdmin = ?  WHERE username = 'Henk'";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$id]);
+
+} else {
+    echo "<h1>deze shit werkt niet </h1>";
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/navbar.css">
+    <link rel="stylesheet" href="style/main.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="topnav">
+        <a href="index.php" class="active">SIGMA MEDIA</a>
+        <!-- Navigation links (hidden by default) -->
+        <div id="myLinks">
+            <?php if (!isset($_SESSION['loggedInUser'])) {
+                echo '<h1 id= "nav-color">hallo gebruiker</h1>';
+            }
+            if (isset($_SESSION['loggedInUser'])) {
+                echo '<h1 id= "nav-color"> Welkom ' . $_SESSION['user'] . '</h1>';
+            }
+
+            ?>
+            <a href="film.php">FILMS</a>
+            <a href="musical.php">MUSICALS</a>
+            <a href="Concerten.php">CONCERTEN</a>
+            <a href="events.php">EVENTS</a>
+            <?php if (!isset($_SESSION['loggedInUser'])) {
+                echo ' <a href="login.php">INLOGGEN</a>';
+            }
+            if (isset($_SESSION['loggedInUser'])) {
+                echo ' <a href="logout.php" onClick="return confirmLogout()">UITLOGGEN</a>';
+            }
+            ?>
+
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <header>
+        <header class="Header">
+            <div id="container">
+                <div id="Sigma">
+                    <a href="index.php" id="nav-color">
+                        <h1>SIGMA MEDIA</h1>
+                    </a>
+                </div>
+                <div id="nav-bar" class="menu">
+                    <a href="film.php" class="menuItem" id="nav-color">
+                        <h2>FILMS</h2>
+                    </a>
+                    <a>
+                        <h2 class="line" id="nav-color">|</h2>
+                    </a>
+                    <a href="musical.php" class="menuItem" id="nav-color">
+                        <h2>MUSICALS</h2>
+                    </a>
+                    <a>
+                        <h2 class="line" id="nav-color">|</h2>
+                    </a>
+                    <a href="Concerten.php" class="menuItem" id="nav-color">
+                        <h2>CONCERTEN</h2>
+                    </a>
+                    <a>
+                        <h2 class="line" id="nav-color">|</h2>
+                    </a>
+                    <a href="events.php" class="menuItem" id="nav-color">
+                        <h2>EVENTS</h2>
+                    </a>
+
+                    </a>
+                </div>
+                <!-- Hamburger -->
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <!-- show/hide login button -->
+                <div id="login">
+                    <?php if (!isset($_SESSION['loggedInUser'])) {
+                        echo '<a href="login.php" id="login-Guest"> <img src="Img/admin.png" alt="Login_button">
+                        </a>';
+                    }
+                    if (isset($_SESSION['loggedInUser'])) {
+                        $username = $_SESSION['user'];
+                        $userquery = $pdo->prepare("SELECT * FROM users WHERE username = '$username'");
+                        $userquery->execute();
+                        $userAdmin = $userquery->fetch(PDO::FETCH_OBJ);
+
+                        function getPoster()
+                        {
+                            global $userAdmin;
+                            return $userAdmin->isAdmin;
+                        }
+                        $userAdminNumber = getPoster();
+                        if ($userAdminNumber == 1) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                        <div class="dropdown">
+                        <img src="Img/admin.png" id="login" alt="Login_button">
+                            <div class="dropdown-content">
+                                <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                <a href="CreateEvent.php">create event</a>
+                                <a href="testing">Add admin</a>
+                            </div>
+                        </div>';
+                        } elseif ($userAdminNumber == 0) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                            <div class="dropdown">
+                            <img src="Img/admin.png" id="login" alt="Login_button">
+                                <div class="dropdown-content">
+                                    <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                </div>
+                            </div>';
+                        }
+                    }
+
+                    ?>
+                    <!-- log out confirmation -->
+                    <script language="JavaScript">
+                        function confirmLogout() {
+
+                            if (!confirm("Are you sure you want to log out?")) {
+
+                                return false;
+
+                            }
+                        }
+                    </script>
+
+                </div>
+                <?php if (!isset($_SESSION['loggedInUser'])) {
+                    echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button"></a>';
+                }
+                if (isset($_SESSION['loggedInUser'])) {
+                    echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button"></a>';
+                }
+
+                ?>
+            </div>
+
+
+        </header>
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Admin Status</th>
+                <th>Change Admin Status</th>
+            </tr>
+            <tr>
+                <?php echoFilm() ?>
+            </tr>
+        </table>
+
+
+
+        <footer>
+            <a href="contact.php" id="contact-color">
+                <h2>Contact</h2>
+            </a>
+            <a id="contact-color">
+                <h2>|</h2>
+            </a>
+            <a href="Hobby.html" id="contact-color">
+                <h2>Sales</h2>
+            </a>
+        </footer>
+</body>
+
+</html>
