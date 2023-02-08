@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $message = "Beste Mevrouw/Meneer" . PHP_EOL . PHP_EOL .
     "Wat fijn dat u bij ons een account heeft aangemaakt" . PHP_EOL .
     "Hierbij verzenden wij uw contact gegevens " . PHP_EOL . PHP_EOL .
-    "uw gebruikersnaam: " . $user . PHP_EOL .
-    "uw wachtwoord: " . $pass . PHP_EOL .  PHP_EOL . PHP_EOL .
+    "Uw gebruikersnaam: " . $user . PHP_EOL .
+    "Uw wachtwoord: " . $pass . PHP_EOL .  PHP_EOL . PHP_EOL .
     "Met vriendelijke groetjes Sigma media";
 
   $headers = "From: sigmamedia1@outlook.com";
