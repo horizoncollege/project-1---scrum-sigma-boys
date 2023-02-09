@@ -197,7 +197,7 @@ try {
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="testing">Add admin</a>
+                                <a href="addAdmin.php">Add admin</a>
                             </div>
                         </div>';
                         } elseif ($userAdminNumber == 0) {

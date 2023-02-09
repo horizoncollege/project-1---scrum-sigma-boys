@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $host = 'localhost';
 $db   = 's168308_project';
 $user = 's168308_Project';
@@ -21,8 +23,62 @@ try {
 }
 
 
+$Users = $pdo->prepare("SELECT * FROM users");
+$Users->execute();
+$AllUsersArray = $Users->fetchAll(PDO::FETCH_OBJ);
 
+function echoFilm()
+{
+    global $AllUsersArray;
+    foreach ($AllUsersArray  as $key) {
+        echo
+        '<tr> .
+            <td>';
+        echo $key->userID;
+        echo $key->username;
+        echo '</td>
+            <td>';
+
+        if ($key->isAdmin == 1) {
+            echo "Admin";
+        } else {
+            echo "User";
+        }
+        echo '</td> <td>';
+        if ($key->isAdmin == 0) {
+            echo '<form method="post">
+            <input type="submit" value="Make Admin" id=save name="Admin"> 
+            </form>';
+        } else {
+            echo'<form method="post">
+            <input type="submit" value="Make User" id=save name="User"> 
+            </form>';
+        }
+
+        '</td>';
+    }
+}
+if (isset($_POST['Admin'])) {
+    global $AllUsersArray;
+    $rights = 1;  
+    $sql = "UPDATE users SET isAdmin = ?  WHERE username = '?'";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$rights]);
+
+} else {
+    echo "<h1>deze shit werkt niet </h1>";
+}
+if (isset($_POST['User'])) {
+    $id = 0;
+    $sql = "UPDATE users SET isAdmin = ?  WHERE username = 'Henk'";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$id]);
+
+} else {
+    echo "<h1>deze shit werkt niet </h1>";
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,13 +88,12 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/index.css">
-    <script src="javascript/Index.js"></script>
-    <title>Sigma Media</title>
+    <link rel="stylesheet" href="style/main.css">
+    <title>Document</title>
 </head>
 
 <body>
-<div class="topnav">
+    <div class="topnav">
         <a href="index.php" class="active">SIGMA MEDIA</a>
         <!-- Navigation links (hidden by default) -->
         <div id="myLinks">
@@ -52,74 +107,13 @@ try {
             ?>
             <a href="film.php">FILMS</a>
             <a href="musical.php">MUSICALS</a>
-            <a href="Concerten.php" id="ConcertenCurrentPage">CONCERTEN</a>
+            <a href="Concerten.php">CONCERTEN</a>
             <a href="events.php">EVENTS</a>
             <?php if (!isset($_SESSION['loggedInUser'])) {
                 echo ' <a href="login.php">INLOGGEN</a>';
             }
             if (isset($_SESSION['loggedInUser'])) {
                 echo ' <a href="logout.php" onClick="return confirmLogout()">UITLOGGEN</a>';
-            }
-            //gets info from db
-            $querySelectAllTickets = $pdo->prepare("SELECT * FROM tickets");
-            $querySelectAllTickets->execute();
-            $AllTickets_array = $querySelectAllTickets->fetchAll(PDO::FETCH_OBJ);
-
-            $querySelectFilmTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'FILM' ORDER BY id ASC LIMIT 1;");
-            $querySelectFilmTickets->execute();
-            $FilmTickets_array = $querySelectFilmTickets->fetchAll(PDO::FETCH_OBJ);
-
-            $querySelectConcertTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'CONCERT' ORDER BY id ASC LIMIT 1;");
-            $querySelectConcertTickets->execute();
-            $ConcertTickets_array = $querySelectConcertTickets->fetchAll(PDO::FETCH_OBJ);
-
-            $querySelectMusicalTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'MUSICAL' ORDER BY id ASC LIMIT 1;");
-            $querySelectMusicalTickets->execute();
-            $MusicalTickets_array = $querySelectMusicalTickets->fetchAll(PDO::FETCH_OBJ);
-
-            $querySelectEventTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'EVENT' ORDER BY id ASC LIMIT 1;");
-            $querySelectEventTickets->execute();
-            $EventTickets_array = $querySelectEventTickets->fetchAll(PDO::FETCH_OBJ);
-
-
-            function echoFilm()
-            {
-                global $FilmTickets_array;
-                foreach ($FilmTickets_array as $key) {
-                    echo '<a href="detailPaginas.php?id=';
-                    echo $key->id;
-                    echo '"id="body-color">';
-                }
-            }
-
-            function echoConcert()
-            {
-                global $ConcertTickets_array;
-                foreach ($ConcertTickets_array as $key) {
-                    echo '<a href="detailPaginas.php?id=';
-                    echo $key->id;
-                    echo '"id="body-color">';
-                }
-            }
-
-            function echoEvent()
-            {
-                global $EventTickets_array;
-                foreach ($EventTickets_array as $key) {
-                    echo '<a href="detailPaginas.php?id=';
-                    echo $key->id;
-                    echo '"id="body-color">';
-                }
-            }
-
-            function echoMusical()
-            {
-                global $MusicalTickets_array;
-                foreach ($MusicalTickets_array as $key) {
-                    echo '<a href="detailPaginas.php?id=';
-                    echo $key->id;
-                    echo '"id="body-color">';
-                }
             }
             ?>
 
@@ -151,7 +145,7 @@ try {
                     <a>
                         <h2 class="line" id="nav-color">|</h2>
                     </a>
-                    <a href="Concerten.php" class="menuItem" id="ConcertenCurrentPage">
+                    <a href="Concerten.php" class="menuItem" id="nav-color">
                         <h2>CONCERTEN</h2>
                     </a>
                     <a>
@@ -221,18 +215,30 @@ try {
 
                 </div>
                 <?php if (!isset($_SESSION['loggedInUser'])) {
-                    echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button">';
+                    echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button"></a>';
                 }
                 if (isset($_SESSION['loggedInUser'])) {
-                    echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button">';
+                    echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button"></a>';
                 }
 
                 ?>
             </div>
 
 
-        </header>   
-     
+        </header>
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Admin Status</th>
+                <th>Change Admin Status</th>
+            </tr>
+            <tr>
+                <?php echoFilm() ?>
+            </tr>
+        </table>
+
+
+
         <footer>
             <a href="contact.php" id="contact-color">
                 <h2>Contact</h2>
