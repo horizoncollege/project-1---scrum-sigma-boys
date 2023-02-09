@@ -52,5 +52,5 @@ aantal int NOT NULL
 
 INSERT INTO orderitems (ordernaam, prijs, aantal)
 VALUES
-('COMIC CON', 69, 3)
-('Soldaat van Oranje', 37, 6)
+('COMIC CON', 69, 3),
+('Soldaat van Oranje', 37, 6);
