@@ -87,13 +87,16 @@ function getDatum()
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/Main.css">
+    <link rel="stylesheet" href="style/index.css">
     <link rel="stylesheet" href="style/detail.css">
+    <link rel="stylesheet" href="style/Main.css">
     <script src="javascript/Index.js"></script>
     <title>Sigma Media</title>
 </head>
 
 <body>
+
+
     <header>
         <header class="Header">
             <div id="container">
@@ -156,8 +159,8 @@ function getDatum()
                 <br><br>
 
                 <div id="gettingDescriptionMargin">
-                    <p> beschrijving:</p>
-                    <p id="ticketDetails" class="beschrijving"><?php echo getDescription() ?></p> <br>
+                    <div id="beschrijvingCenteren"><p class="beschrijving">Beschrijving:</p></div>
+                    <div id="beschrijvingTextCenteren"><p id="ticketDetails" class="beschrijving"><?php echo getDescription() ?></p> <br></div>
                 </div>
 
             </div>

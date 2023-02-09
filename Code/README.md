@@ -1,3 +1,3 @@
 # SIGMA MEDIA
 
-je zult gestuurd worden naar de index pagina vanaf daar kunt u alles kiezen/doen om rond de website te gaan
+Schrijf hier alles wat een andere ontwikkleaar moet weten om met jouw code verder te werken.,
