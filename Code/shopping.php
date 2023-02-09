@@ -1,9 +1,9 @@
 <?php
 
 $host = 'localhost';
-$db   = 's168308_project';
-$user = 's168308_Project';
-$pass = 'Pr0ject';
+$db = 's168308_project';
+$user = 'bit_academy';
+$pass = 'bit_academy';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -13,7 +13,6 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES   => false,
 ];
 
-// shows version of the database
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
@@ -93,32 +92,82 @@ session_start();
                     <a href="shopping.php" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
                     </a>
                 </div>
-
             </div>
-
-
         </header>
-        <div id="body">
-            <h1 id="mandje">Winkelmandje</h1>
-            <h2 id="backwall"></h2>
-            <h3 id=Shopping>
-                <h3 id="item">FILM - Minions: The rise of Gru</h3>
-                <h3 id=dash>-</h3>
-                <h3 id="aantal">aantal tickets</h3>
-                <img src="Img/min.png" id="min" alt="Ree" srcset="">
-                <h3 id="number">2</h3>
-                <img src="Img/plus.png" id="plus" alt="Ree" srcset="">
-            </h3>
-            <h1 id="mandje2">Winkelmandje</h1>
-            <h2 id="backwall2"></h2>
-            <h3 id=Shopping2>
-                <h3 id="item2">FILM - Minions: The rise of Gru</h3>
-                <h3 id=dash2>-</h3>
-                <h3 id="aantal2">aantal tickets</h3>
-                <img src="Img/min.png" id="min2" alt="Ree" srcset="">
-                <h3 id="number2">2</h3>
-                <img src="Img/plus.png" id="plus2" alt="Ree" srcset="">
-            </h3>
+
+
+        <?php
+
+        $sql = "SELECT * FROM orderitems";
+        $result = $pdo->query($sql);
+        $ordersql = $pdo->prepare("SELECT * FROM orderitems");
+        $ordersql->execute();
+        $orderarray = $ordersql->fetchAll(PDO::FETCH_OBJ);
+
+        echo '<table class="tickets"> Tickets';
+        echo "<tr> <td>Naam<td/> <td>Prijs<td/> <td> Aantal</td> <tr/> ";
+
+
+        $totaal = 0;
+foreach ($orderarray as $key) {
+    $i = $key->prijs;
+    // print_r($orderarray);
+    $ticketprijs =  $key->prijs;
+    $ticketaantal = $key->aantal;
+    $totaal = $ticketprijs * $ticketaantal + $totaal;
+
+    echo "<td>" . $key->ordernaam . "<td/>
+        <td>" . "$" .  $key->prijs . "<td/>
+        <td>" . ' <form action="shopping.php" method="post">
+            <button  id="minknop"  name="minknop' . $i . '" >  
+                <img src="Img/min.png" id="min">
+            </button>' . $key->aantal  .
+        '<button id="plusknop" name="plusknop' . $i . '" >
+                <img src="Img/plus.png" id="plus"> 
+            </button> 
+        </form>' . "<td/> <tr/>";
+
+    
+
+    if (isset($_POST['plusknop' . $i])) {
+        $updateplus = "UPDATE orderitems SET aantal = aantal + 1 WHERE orderID = :id";
+        $stmtplus = $pdo->prepare($updateplus);
+        $stmtplus->execute(['id' => $key->orderID]);
+    }
+    if (isset($_POST['minknop' . $i])) {
+        if ($key->aantal <= 1) {
+            $updatemin = "DELETE FROM orderitems WHERE orderID = :id";
+            $stmtmin = $pdo->prepare($updatemin);
+            $stmtmin->execute(['id' => $key->orderID]); 
+        }
+        $updatemin = "UPDATE orderitems SET aantal = aantal - 1 WHERE orderID = :id";
+        $stmtmin = $pdo->prepare($updatemin);
+        $stmtmin->execute(['id' => $key->orderID]);
+    }
+}
+
+        echo "</table>";
+        echo "<table>";
+        echo "<tr> <td> Totaal Bedrag</td> <tr/> ";
+        echo "<td>$ $totaal <td/> <tr/>";
+        echo "</table>";
+
+        // if (isset($_POST['plusknop'])) {
+        //     $plusaantal = $ticketaantal + 1;
+        //     $updateplus = "UPDATE orderitems SET aantal = :plusaantal WHERE orderID = :id";
+        //     $stmtplus = $pdo->prepare($updateplus);
+        //     $stmtplus->execute(['plusaantal' => $plusaantal, 'id' => $row["orderID"]]);
+        //   }
+        ?>
+<script type="text/javascript">
+    $('#contactForm').submit(function () {
+       $.post("shopping.php",$("#contactForm").serialize(), function(data){
+       });
+        return false;
+    });
+</script>
+
+
         </div>
         <footer>
             <a href="contact.php" id="contact-color">
@@ -131,6 +180,8 @@ session_start();
                 <h2>Sales</h2>
             </a>
         </footer>
+
+
 </body>
 
 </html>
