@@ -23,17 +23,6 @@ datum date,
 poster varchar(255)
 );
 
-CREATE TABLE orders (
-orderID int AUTO_INCREMENT PRIMARY KEY,
-orderedBy varchar(255)
-);
-
-CREATE TABLE orderItems (
-orderItemID int AUTO_INCREMENT PRIMARY KEY,
-orderID int,
-FOREIGN KEY (orderID) REFERENCES orders(orderID)
-);
-
 INSERT INTO users (username, wachtwoord, isAdmin, emailAddress)
 VALUES ("Henk", "HenkIsDeBeste", 0, "henk@gmail.com");
 
@@ -54,3 +43,14 @@ CREATE TABLE contact (
     bericht VARCHAR(10000) NOT NULL
 );
 
+CREATE TABLE orderitems (
+orderID int AUTO_INCREMENT PRIMARY KEY,
+ordernaam VARCHAR(255) NOT NULL,
+prijs int NOT NULL,
+aantal int NOT NULL
+);
+
+INSERT INTO orderitems (ordernaam, prijs, aantal)
+VALUES
+('COMIC CON', 69, 3)
+('Soldaat van Oranje', 37, 6)
