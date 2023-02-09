@@ -91,7 +91,7 @@ try {
 
 
     </header>
-    <Form id="Formcontainer" method="POST">
+    <Form action="send-email.php" id="Formcontainer" method="POST">
         <input type="text" id=lettters name="user" placeholder="gebruikersnaam" required>
         <input type="email" id=lettters name="email" placeholder="Email-adres " required>
         <input type="text" id=lettters name="pass" placeholder="Wachtwoord" required>
@@ -107,6 +107,8 @@ try {
 
         $sql = "INSERT INTO users (username, wachtwoord, isAdmin ,emailAddress)
             VALUES(?,?,0,?);";
+
+    
 
         $Stmt = $pdo->prepare($sql);
 
