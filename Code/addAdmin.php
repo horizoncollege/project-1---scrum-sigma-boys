@@ -38,9 +38,13 @@ function echoFilm()
         echo '</td>
             <td>';
 
-        if ($key->isAdmin == 1) {
+        if ($key->isAdmin == 2) {
             echo "Admin";
-        } else {
+        }elseif ($key->isAdmin == 1){
+           
+            echo "Event Organizer";
+        }
+            else {
             echo "User";
         }
         echo '</td>';
@@ -48,13 +52,27 @@ function echoFilm()
             echo '</td>
             <td><a href="MakeAdmin.php?id=';
             echo $key->userID;
-            echo '" id="WebID">make Admin</a></td>';
-        } else {
+            echo '" id="WebID">make Admin</a> <br> 
+            <a href="MakeEventor.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make Event organisator</a</td>';
+        } elseif ($key->isAdmin == 2) {
             echo '</td>
             <td><a href="MakeUser.php?id=';
             echo $key->userID;
-            echo '" id="WebID">Make User</a></td>';
-        };
+            echo '" id="WebID">make User</a> <br> 
+            <a href="MakeEventor.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make Event organisator</a</td>';
+        }else{echo '</td>
+            <td><a href="MakeUser.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make User</a> <br> 
+            <a href="MakeAdmin.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make Admin</a</td>';
+
+        }
     }
 }
 if (isset($_POST['Admin'])) {
@@ -176,17 +194,26 @@ if (isset($_POST['User'])) {
                             return $userAdmin->isAdmin;
                         }
                         $userAdminNumber = getPoster();
-                        if ($userAdminNumber == 1) {
+                        if ($userAdminNumber == 2) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">
                         <img src="Img/admin.png" id="login" alt="Login_button">
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="testing">Add admin</a>
+                                <a href="addAdmin.php">Add admin</a>
                             </div>
                         </div>';
-                        } elseif ($userAdminNumber == 0) {
+                        } elseif ($userAdminNumber == 1) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                        <div class="dropdown">
+                        <img src="Img/admin.png" id="login" alt="Login_button">
+                            <div class="dropdown-content">
+                                <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                <a href="CreateEvent.php">create event</a>
+                            </div>
+                        </div>';
+                        }elseif ($userAdminNumber == 0) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                             <div class="dropdown">
                             <img src="Img/admin.png" id="login" alt="Login_button">
@@ -196,6 +223,7 @@ if (isset($_POST['User'])) {
                             </div>';
                         }
                     }
+
 
                     ?>
                     <!-- log out confirmation -->

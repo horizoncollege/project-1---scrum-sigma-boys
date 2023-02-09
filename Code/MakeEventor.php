@@ -16,7 +16,7 @@ try {
 } catch (\PDOException $e) {
     echo 'error connecting to database: ' . $e->getMessage();
 }
-$priveledge = 2;
+$priveledge = 1;
 $stmt = $pdo->prepare('SELECT * FROM users WHERE userID = :id');
 $stmt->bindParam(':id', $id);
 $stmt->execute();
