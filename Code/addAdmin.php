@@ -34,7 +34,6 @@ function echoFilm()
         echo
         '<tr> .
             <td>';
-        echo $key->userID;
         echo $key->username;
         echo '</td>
             <td>';
@@ -44,27 +43,26 @@ function echoFilm()
         } else {
             echo "User";
         }
-        echo '</td> <td>';
+        echo '</td>';
         if ($key->isAdmin == 0) {
-            echo '<form method="post">
-            <input type="submit" value="Make Admin" id=save name="Admin"> 
-            </form>';
+            echo '</td>
+            <td><a href="MakeAdmin.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make Admin</a></td>';
         } else {
-            echo'<form method="post">
-            <input type="submit" value="Make User" id=save name="User"> 
-            </form>';
-        }
-
-        '</td>';
+            echo '</td>
+            <td><a href="MakeUser.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">Make User</a></td>';
+        };
     }
 }
 if (isset($_POST['Admin'])) {
     global $AllUsersArray;
-    $rights = 1;  
+    $rights = 1;
     $sql = "UPDATE users SET isAdmin = ?  WHERE username = '?'";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$rights]);
-
 } else {
     echo "<h1>deze shit werkt niet </h1>";
 }
@@ -73,7 +71,6 @@ if (isset($_POST['User'])) {
     $sql = "UPDATE users SET isAdmin = ?  WHERE username = 'Henk'";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$id]);
-
 } else {
     echo "<h1>deze shit werkt niet </h1>";
 }
