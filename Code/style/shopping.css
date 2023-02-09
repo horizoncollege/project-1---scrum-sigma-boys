@@ -3,245 +3,44 @@
     src: url(../Fonts/Geo-Regular.ttf);
 }
 
-#mandje {
-    margin-top: 15px;
+table{
     display: flex;
-    font-family: "Geo";
-    color: white;
+    text-align: center;
     justify-content: center;
-    font-size: 90px;
+    border: 5px;
+    border-color: #471609;
+    border-width: 15px;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    background-color: #D9D9D9;
+    width: 70%;
+    height: 20%;
+    margin-left: 10%;
+    font-family: Geo;
+    font-size: 200%;
 }
 
-#Shopping {
-    position: absolute;
-    width: 1165px;
-    height: 130px;
-    left: 374px;
-    top: 280px;
-    background: #D9D9D9;
-    color: black
-}
-
-#backwall {
-    position: absolute;
-    width: 1207px;
-    height: 160px;
-    left: 350px;
-    top: 260px;
-
-    background: #471609;
-}
-
-#item {
-    position: absolute;
-    width: 998px;
-    height: 140px;
-    left: 411px;
-    top: 280px;
-
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-
-    color: #000000;
-}
-#dash{
-    display: flex;
-    position: absolute;
-    width: 998px;
-    height: 140px;
-    left: 955px;
-    top: 280px;
-
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
-#aantal {
-    display: flex;
-    position: absolute;
-    width: 998px;
-    height: 140px;
-    left: 1050px;
-    top: 280px;
-
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
-#min{
-    display: flex;
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    left: 1300px;
-    top: 315px;
-
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
-#number{
-    display: flex;
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    left: 1380px;
-    top: 315px;
-
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
 #plus{
-    display: flex;
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    left: 1420px;
-    top: 315px;
-
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
-#Shopping2 {
-    position: absolute;
-    width: 1165px;
-    height: 130px;
-    left: 374px;
-    top: 500px;
-    background: #D9D9D9;
-    color: black
-}
-#backwall2 {
-
-    width: 1207px;
-    height: 160px;
-    margin-left: 350px;
-    margin-top: 190px;
-
-    background: #471609;
+    height: 20px;
+    width: 20px;
+    padding-left: 3px;
 }
 
-#item2 {
-    position: absolute;
-    width: 998px;
-    height: 140px;
-    left: 411px;
-    top: 500px;
-
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-
-    color: #000000;
+#min{
+    height: 20px;
+    width: 20px;
+    padding-right: 3px;
 }
-#dash2{
-    display: flex;
-    position: absolute;
-    width: 998px;
-    height: 140px;
-    left: 955px;
-    top: 500px;
 
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
+#minknop{
+    background-color: #D9D9D9;
+    cursor: grab;
 }
-#aantal2 {
-    display: flex;
-    position: absolute;
-    width: 998px;
-    height: 140px;
-    left: 1050px;
-    top: 500px;
 
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
+#plusknop{
+    background-color: #D9D9D9;
+    cursor: grab;
 }
-#min2{
-    display: flex;
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    left: 1300px;
-    top: 530px;
 
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
-#number2{
-    display: flex;
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    left: 1380px;
-    top: 530px;
 
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
-#plus2{
-    display: flex;
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    left: 1420px;
-    top: 530px;
-
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
