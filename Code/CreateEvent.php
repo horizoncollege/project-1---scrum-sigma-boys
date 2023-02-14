@@ -41,7 +41,39 @@ try {
 
 <body>
 
-<header>
+<div class="topnav">
+        <a href="index.php" class="active">SIGMA MEDIA</a>
+        <!-- Navigation links (hidden by default) -->
+        <div id="myLinks">
+            <?php if (!isset($_SESSION['loggedInUser'])) {
+                echo '<h1 id= "nav-color">hallo gebruiker</h1>';
+            }
+            if (isset($_SESSION['loggedInUser'])) {
+                echo '<h1 id= "nav-color"> Welkom ' . $_SESSION['user'] . '</h1>';
+            }
+
+            ?>
+            <a href="film.php">FILMS</a>
+            <a href="musical.php">MUSICALS</a>
+            <a href="Concerten.php" id="FilmsCurrentPage">CONCERTEN</a>
+            <a href="events.php">EVENTS</a>
+            <?php if (!isset($_SESSION['loggedInUser'])) {
+                echo ' <a href="login.php">INLOGGEN</a>';
+            }
+            if (isset($_SESSION['loggedInUser'])) {
+                echo ' <a href="logout.php" onClick="return confirmLogout()">UITLOGGEN</a>';
+            }
+
+            ?>
+
+        </div>
+        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <header>
         <header class="Header">
             <div id="container">
                 <div id="Sigma">
@@ -62,7 +94,7 @@ try {
                     <a>
                         <h2 class="line" id="nav-color">|</h2>
                     </a>
-                    <a href="Concerten.php" class="menuItem" id="nav-color">
+                    <a href="Concerten.php" id=FilmsCurrentPage class="menuItem" id="nav-color">
                         <h2>CONCERTEN</h2>
                     </a>
                     <a>
@@ -96,14 +128,23 @@ try {
                             return $userAdmin->isAdmin;
                         }
                         $userAdminNumber = getPoster();
-                        if ($userAdminNumber == 1) {
+                        if ($userAdminNumber == 2) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">
                         <img src="Img/admin.png" id="login" alt="Login_button">
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="testing">Add admin</a>
+                                <a href="addAdmin.php">Add admin</a>
+                            </div>
+                        </div>';
+                        } elseif ($userAdminNumber == 1) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                        <div class="dropdown">
+                        <img src="Img/admin.png" id="login" alt="Login_button">
+                            <div class="dropdown-content">
+                                <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                <a href="CreateEvent.php">create event</a>  
                             </div>
                         </div>';
                         } elseif ($userAdminNumber == 0) {
@@ -142,7 +183,7 @@ try {
             </div>
 
 
-        </header>
+        </header>  
     <div id="body">
         <form method="post" action="insert.php" id="CreateEvent" enctype="multipart/form-data">
             <label id=titleFlex for="title">Titel</label>

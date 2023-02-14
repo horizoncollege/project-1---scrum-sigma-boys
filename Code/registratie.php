@@ -54,7 +54,7 @@ try {
             <i class="fa fa-bars"></i>
         </a>
     </div>
-    <!-- navigatie bar-->
+
     <header class="Header">
         <div id="container">
             <div id="Sigma">
@@ -89,8 +89,9 @@ try {
             </div>
         </div>
 
+
     </header>
-    <Form id="Formcontainer" method="POST">
+    <Form action="send-email.php" id="Formcontainer" method="POST">
         <input type="text" id=lettters name="user" placeholder="gebruikersnaam" required>
         <input type="email" id=lettters name="email" placeholder="Email-adres " required>
         <input type="text" id=lettters name="pass" placeholder="Wachtwoord" required>
@@ -100,16 +101,14 @@ try {
     if (isset($_POST['Create'])) {
         $name = $_POST['user'];
         $password = $_POST['pass'];
-        //encrypt wachtwoord
-        $password=md5($password);
         $email = $_POST['email'];
 
         $pdo = new PDO($dsn, $user, $pass);
-        //in de database sturen
+
         $sql = "INSERT INTO users (username, wachtwoord, isAdmin ,emailAddress)
             VALUES(?,?,0,?);";
 
-
+    
 
         $Stmt = $pdo->prepare($sql);
 
@@ -117,25 +116,6 @@ try {
         echo "<h1 id=letters>Account Created </h1>";
         header('Refresh:1; url=login.php');
     }
-    //email gegevens verzamelen
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $to = $_POST['email'];
-        $subject = "Inlog gegevens";
-        $user = $_POST['user'];
-        $pass = $_POST['pass'];
-      
-        $message = "Beste Mevrouw/Meneer" . PHP_EOL . PHP_EOL .
-          "Wat fijn dat u bij ons een account heeft aangemaakt" . PHP_EOL .
-          "Hierbij verzenden wij uw contact gegevens " . PHP_EOL . PHP_EOL .
-          "Uw gebruikersnaam: " . $user . PHP_EOL .
-          "Uw wachtwoord: " . $pass . PHP_EOL .  PHP_EOL . PHP_EOL .
-          "Met vriendelijke groetjes Sigma media";
-      
-        $headers = "From: sigmamedia1@outlook.com";
-        //email versturen
-        $success = mail($to, $subject, $message, $headers);
-      }
-
     ?>
     <footer>
         <a href="contact.php" id="contact-color">

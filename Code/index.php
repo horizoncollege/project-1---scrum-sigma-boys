@@ -190,7 +190,7 @@ try {
                             return $userAdmin->isAdmin;
                         }
                         $userAdminNumber = getPoster();
-                        if ($userAdminNumber == 1) {
+                        if ($userAdminNumber == 2) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">
                         <img src="Img/admin.png" id="login" alt="Login_button">
@@ -198,6 +198,15 @@ try {
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
                                 <a href="addAdmin.php">Add admin</a>
+                            </div>
+                        </div>';
+                        } elseif ($userAdminNumber == 1) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                        <div class="dropdown">
+                        <img src="Img/admin.png" id="login" alt="Login_button">
+                            <div class="dropdown-content">
+                                <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                <a href="CreateEvent.php">create event</a>  
                             </div>
                         </div>';
                         } elseif ($userAdminNumber == 0) {
