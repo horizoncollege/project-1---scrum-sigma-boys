@@ -104,6 +104,8 @@ try {
     if (isset($_POST['name']) && isset($_POST['pass'])) {
         $username = $_POST['name'];
         $password = $_POST['pass'];
+        //decrypt wachtwoord
+        $password=md5($password); 
         $query = $pdo->query("SELECT * FROM users WHERE username = '$username' AND wachtwoord = '$password' ");
         $user = $query->fetch();
         // checks if input = database
