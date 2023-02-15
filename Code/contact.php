@@ -41,6 +41,22 @@ function contact($naam, $email, $bericht, $pdo, $dsn, $user, $pass)
 
     header('Refresh:1; url=contactontvangen.php');
 }
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $to = $_POST['contactemail'];
+    $subject = "Contact";
+    $user = $_POST['contactnaam'];
+    
+    $message = "'Beste " . $user . PHP_EOL . PHP_EOL .
+    "We hebben uw bericht ontvangen, Hierbij bevestigen wij dat we er mee aan de slag gaan." . PHP_EOL .
+    "We sturen zo spoedig mogelijk een mail terug." . PHP_EOL . PHP_EOL . 
+    "Met vriendelijke groetjes Sigma media";
+  
+    $headers = "From: sigmamedia1@outlook.com";
+  
+    $success = mail($to, $subject, $message, $headers);
+  }
+
 ?>
 
 <!DOCTYPE html>
