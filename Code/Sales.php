@@ -23,8 +23,59 @@ try {
 }
 
 
+$Users = $pdo->prepare("SELECT * FROM users");
+$Users->execute();
+$AllUsersArray = $Users->fetchAll(PDO::FETCH_OBJ);
+// checkes all users and puts them in a Table
+function echoUsers()
+{
+    global $AllUsersArray;
+    foreach ($AllUsersArray  as $key) {
+        echo
+        '<tr> .
+            <td>';
+        echo $key->username;
+        echo '</td>
+            <td>';
 
+        if ($key->isAdmin == 2) {
+            echo "Admin";
+        } elseif ($key->isAdmin == 1) {
+
+            echo "Event Organizer";
+        } else {
+            echo "User";
+        }
+        echo '</td>';
+        if ($key->isAdmin == 0) {
+            echo '</td>
+            <td><a href="MakeAdmin.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make Admin</a> <br> 
+            <a href="MakeEventor.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make Event organisator</a></td>';
+        } elseif ($key->isAdmin == 2) {
+            echo '</td>
+            <td><a href="MakeUser.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make User</a> <br> 
+            <a href="MakeEventor.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make Event organisator</a></td>';
+        } else {
+            echo '</td>
+            <td><a href="MakeUser.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make User</a> <br> 
+            <a href="MakeAdmin.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make Admin</a></td>';
+        }
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,13 +86,12 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
     <link rel="stylesheet" href="style/main.css">
-    <script src="javascript/Index.js"></script>
-    <title>Sigma Media</title>
+    <link rel="stylesheet" href="style/Sales.css">
+    <title>Document</title>
 </head>
 
 <body>
-
-<div class="topnav">
+    <div class="topnav">
         <a href="index.php" class="active">SIGMA MEDIA</a>
         <!-- Navigation links (hidden by default) -->
         <div id="myLinks">
@@ -55,7 +105,7 @@ try {
             ?>
             <a href="film.php">FILMS</a>
             <a href="musical.php">MUSICALS</a>
-            <a href="Concerten.php" >CONCERTEN</a>
+            <a href="Concerten.php">CONCERTEN</a>
             <a href="events.php">EVENTS</a>
             <?php if (!isset($_SESSION['loggedInUser'])) {
                 echo ' <a href="login.php">INLOGGEN</a>';
@@ -134,7 +184,7 @@ try {
                         <img src="Img/admin.png" id="login" alt="Login_button">
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
-                                <a href="CreateEvent.php" id=FilmsCurrentPage >create event</a>
+                                <a href="CreateEvent.php">create event</a>
                                 <a href="addAdmin.php">Add admin</a>
                             </div>
                         </div>';
@@ -144,7 +194,7 @@ try {
                         <img src="Img/admin.png" id="login" alt="Login_button">
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
-                                <a href="CreateEvent.php" id=FilmsCurrentPage >create event</a>  
+                                <a href="CreateEvent.php">create event</a>  
                             </div>
                         </div>';
                         } elseif ($userAdminNumber == 0) {
@@ -172,6 +222,7 @@ try {
                     </script>
 
                 </div>
+                <!-- mving shopping card as required -->
                 <?php if (!isset($_SESSION['loggedInUser'])) {
                     echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button"></a>';
                 }
@@ -183,47 +234,23 @@ try {
             </div>
 
 
-        </header>  
-    <div id="body">
-        <form method="post" action="insert.php" id="CreateEvent" enctype="multipart/form-data">
-            <label id=titleFlex for="title">Titel</label>
-            <input type="text" id=inputFlex name="title" required>
-            <label id=titleFlex for="Media" required>Type evenement</label>
-            <select id=inputFlex id="media" name="media">
-                <option value="EVENT">Event</option>
-                <option value="FILM">Film</option>
-                <option value="MUSICAL">Musical</option>
-                <option value="CONCERT">Concert</option>
-            </select>
-            <label id=titleFlex for="duur">tijd in minuten</label>
-            <input id=inputFlex type="text" name="duur" required>
-            <label id=titleFlex for="price">prijs</label>
-            <input id=inputFlex type="text" name="price" required>
-            <label for="locatie" id=titleFlex>Locatie</label>
-            <input type="text" id=inputFlex name="locatie" required>
-            <label for="omschrijving" id=titleFlex>Omschrijving</label>
-            <textarea name="omschrijving" id=inputFlex cols="30" rows="10" required></textarea>
-            <label for="datum_uitkomst" id=titleFlex>Datum van uitkomst</label>
-            <input type="date" id=inputFlex name="datum" required>
-            <label id=titleFlex for="duur">Type hier A.U.B the file naam zodat hij zal werken(Warning als de image niet 320X480 is zal hij niet passen in de box)</label>
-            <input id=inputFlex type="text" name="imageName" required>
-            <input type="file" name="fileToUpload" id="fileToUpload" required>
-            <input type="submit" value="Create" id="create" name="Create">
+        </header>
 
-        </form>
+        <div id="BrownContainer">
+            <div id="SalesContainer">
+                <h1 id=salesText>We hebben op dit moment geen sales</h1>
+            </div>
+        </div>
 
-    </div>
-    <footer>
-        <a href="contact.php" id="contact-color">
-            <h2>Contact</h2>
-        </a>
-        <a id="contact-color">
-            <h2>|</h2>
-        </a>
-        <a href="Hobby.html" id="contact-color">
-            <h2>Sales</h2>
-        </a>
-    </footer>
-</body>
 
-</html>
+        <footer>
+            <a href="contact.php" id="contact-color">
+                <h2>Contact</h2>
+            </a>
+            <a id="contact-color">
+                <h2>|</h2>
+            </a>
+            <a href="Hobby.html" id=ContactCurrentPage id="contact-color">
+                <h2>Sales</h2>
+            </a>
+        </footer>

@@ -184,7 +184,7 @@ function echoUsers()
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="addAdmin.php">Add admin</a>
+                                <a href="addAdmin.php" id=FilmsCurrentPage >Add admin</a>
                             </div>
                         </div>';
                         } elseif ($userAdminNumber == 1) {
