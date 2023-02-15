@@ -107,9 +107,6 @@ try {
 
         $sql = "INSERT INTO users (username, wachtwoord, isAdmin ,emailAddress)
             VALUES(?,?,0,?);";
-
-    
-
         $Stmt = $pdo->prepare($sql);
 
         $Stmt->execute([$name, $password, $email]);

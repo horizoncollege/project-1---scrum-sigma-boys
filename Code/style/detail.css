@@ -6,53 +6,118 @@ h1, h2, #ticketDetails , td, tr, p{
    color: #b11a09; 
 }
 
-#ticketTitel {
-    text-align: center;
-    font-size: 48px;
+@media only screen and (min-width: 1920px) {
+    
+    #ticketTitel {
+        text-align: center;
+        font-size: 48px;
+    }
+    
+    #deBetereContainer {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    #detailItems {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-left: 30%;
+    }
+    
+    .beschrijving {
+        width: 70%;
+        text-align: left;
+        margin-bottom: 3%;
+    }
+    
+    #imagePlacing{
+        display: flex;
+        width: 40%;
+    }
+    
+    .poster {
+        margin-left: 30%;
+        margin-top: 2%;
+        position: absolute;
+    }
+    
+    #gettingDescriptionMargin {
+        margin-top: 25%;
+        margin-bottom: 5%;
+    }
+    
+    
+    #textPlacing {
+        display: flex;
+        width: 35%;
+        flex-direction: column;
+        margin-top: 3%;
+    }
 }
 
-#deBetereContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
+@media only screen and (max-width: 1919px) {
+    
+    #ticketTitel {
+        text-align: center;
+        font-size: 48px;
+    }
+    
+    #deBetereContainer {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    #detailItems {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .beschrijving {
+        width: 70%;
+        text-align: center;
+        margin-bottom: 3%;
+    }
+    
+    #imagePlacing{
+        display: flex;
+        justify-content: center;
+        width: 40%;
+    }
+    
+    .poster {
+        margin-top: 2%;
+        position: relative;
+    }
+    
+    #beschrijvingCenteren, #beschrijvingTextCenteren {
+        display: flex;
+        justify-content: center;
+    }
+    
+    
+    #textPlacing {
+        display: flex;
+        width: 35%;
+        flex-direction: column;
+        margin-top: 3%;
+    }
+
+    span {
+        display: inline-block;
+        width: 100%;
+    }
+
+    #textPlacing {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
 }
-
-
-
-#detailItems {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    margin-left: 30%;
-}
-
-.beschrijving {
-    width: 70%;
-    text-align: left;
-}
-
-#imagePlacing{
-    display: flex;
-    width: 40%;
-}
-
-.poster {
-    margin-left: 30%;
-    margin-top: 2%;
-    position: absolute;
-}
-
-#gettingDescriptionMargin {
-    margin-top: 25%;
-}
-
-
-#textPlacing {
-    display: flex;
-    width: 35%;
-    flex-direction: column;
-    margin-top: 3%;
-}
-

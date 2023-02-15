@@ -34,20 +34,24 @@ function echoUsers()
         echo
         '<tr> .
             <td>';
+        echo $key->userID;
         echo $key->username;
         echo '</td>
             <td>';
 
-        if ($key->isAdmin == 2) {
+        if ($key->isAdmin == 1) {
             echo "Admin";
+
         } elseif ($key->isAdmin == 1) {
 
             echo "Event Organizer";
+
         } else {
             echo "User";
         }
-        echo '</td>';
+        echo '</td> <td>';
         if ($key->isAdmin == 0) {
+
             echo '</td>
             <td><a href="MakeAdmin.php?id=';
             echo $key->userID;
@@ -72,8 +76,11 @@ function echoUsers()
             echo $key->userID;
             echo '" id="WebID">make Admin</a></td>';
         }
+
+        '</td>';
     }
 }
+
 ?>
 
 
@@ -85,8 +92,8 @@ function echoUsers()
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/main.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="style/Main.css">
+    <title>Create an event</title>
 </head>
 
 <body>
@@ -177,6 +184,7 @@ function echoUsers()
                             return $userAdmin->isAdmin;
                         }
                         $userAdminNumber = getPoster();
+
                         if ($userAdminNumber == 2) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">

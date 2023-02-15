@@ -22,8 +22,9 @@ try {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-
-
+// $querySelectFilmTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'FILM' ORDER BY id ASC LIMIT 1;");
+// $querySelectFilmTickets->execute();
+// $filmPoster = $filmPoster->fetch(PDO::FETCH_OBJ);
 
 ?>
 
@@ -65,26 +66,28 @@ try {
             if (isset($_SESSION['loggedInUser'])) {
                 echo ' <a href="logout.php" onClick="return confirmLogout()">UITLOGGEN</a>';
             }
+
             //gets info from db
             $querySelectAllTickets = $pdo->prepare("SELECT * FROM tickets");
             $querySelectAllTickets->execute();
             $AllTickets_array = $querySelectAllTickets->fetchAll(PDO::FETCH_OBJ);
 
-            $querySelectFilmTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'FILM' ORDER BY id ASC LIMIT 1;");
+            $querySelectFilmTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'FILM' ORDER BY datum ASC LIMIT 1;");
             $querySelectFilmTickets->execute();
             $FilmTickets_array = $querySelectFilmTickets->fetchAll(PDO::FETCH_OBJ);
 
-            $querySelectConcertTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'CONCERT' ORDER BY id ASC LIMIT 1;");
+            $querySelectConcertTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'CONCERT' ORDER BY datum ASC LIMIT 1;");
             $querySelectConcertTickets->execute();
             $ConcertTickets_array = $querySelectConcertTickets->fetchAll(PDO::FETCH_OBJ);
 
-            $querySelectMusicalTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'MUSICAL' ORDER BY id ASC LIMIT 1;");
+            $querySelectMusicalTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'MUSICAL' ORDER BY datum ASC LIMIT 1;");
             $querySelectMusicalTickets->execute();
             $MusicalTickets_array = $querySelectMusicalTickets->fetchAll(PDO::FETCH_OBJ);
 
-            $querySelectEventTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'EVENT' ORDER BY id ASC LIMIT 1;");
+            $querySelectEventTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'EVENT' ORDER BY datum ASC LIMIT 1;");
             $querySelectEventTickets->execute();
             $EventTickets_array = $querySelectEventTickets->fetchAll(PDO::FETCH_OBJ);
+
 
 
             function echoFilm()
@@ -94,6 +97,9 @@ try {
                     echo '<a href="detailPaginas.php?id=';
                     echo $key->id;
                     echo '"id="body-color">';
+                    echo '<img src="Img/';
+                    echo $key->poster;
+                    echo '" alt="shopping_button" id="img-border">';
                 }
             }
 
@@ -104,6 +110,9 @@ try {
                     echo '<a href="detailPaginas.php?id=';
                     echo $key->id;
                     echo '"id="body-color">';
+                    echo '<img src="Img/';
+                    echo $key->poster;
+                    echo '" alt="shopping_button" id="img-border">';
                 }
             }
 
@@ -114,6 +123,9 @@ try {
                     echo '<a href="detailPaginas.php?id=';
                     echo $key->id;
                     echo '"id="body-color">';
+                    echo '<img src="Img/';
+                    echo $key->poster;
+                    echo '" alt="shopping_button" id="img-border">';
                 }
             }
 
@@ -124,6 +136,9 @@ try {
                     echo '<a href="detailPaginas.php?id=';
                     echo $key->id;
                     echo '"id="body-color">';
+                    echo '<img src="Img/';
+                    echo $key->poster;
+                    echo '" alt="shopping_button" id="img-border">';
                 }
             }
             ?>
@@ -197,7 +212,7 @@ try {
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="addAdmin.php">Add admin</a>
+                                <a href="#">Add admin</a>
                             </div>
                         </div>';
                         } elseif ($userAdminNumber == 1) {
@@ -232,28 +247,28 @@ try {
                             }
                         }
                     </script>
+                    <?php if (!isset($_SESSION['loggedInUser'])) {
+                        echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button">';
+                    }
+                    if (isset($_SESSION['loggedInUser'])) {
+                        echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button">';
+                    }
 
+                    ?>
                 </div>
-                <?php if (!isset($_SESSION['loggedInUser'])) {
-                    echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button">';
-                }
-                if (isset($_SESSION['loggedInUser'])) {
-                    echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button">';
-                }
 
-                ?>
             </div>
 
 
         </header>
         <div id="body">
-            <?php echoFilm() ?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
+             <?php echoFilm() ?>
             </a>
-            <?php echoMusical() ?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
+            <?php echoMusical() ?>
             </a>
-            <?php echoConcert() ?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
+            <?php echoConcert() ?>
             </a>
-            <?php echoEvent() ?> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
+            <?php echoEvent() ?>
             </a>
         </div>
         <footer>
