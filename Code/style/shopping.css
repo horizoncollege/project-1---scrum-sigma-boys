@@ -3,150 +3,13 @@
     src: url(../Fonts/Geo-Regular.ttf);
 }
 
-#mandje {
-    margin-top: 15px;
-    display: flex;
-    font-family: "Geo";
-    color: white;
-    justify-content: center;
-    font-size: 90px;
-}
 
-#Shopping {
-    position: absolute;
-    width: 1165px;
-    height: 130px;
-    left: 374px;
-    top: 280px;
-    background: #D9D9D9;
-    color: black
-}
 
-#backwall {
-    position: absolute;
-    width: 1207px;
-    height: 160px;
-    left: 350px;
-    top: 260px;
 
-    background: #471609;
-}
 
-#item {
-    position: absolute;
-    width: 998px;
-    height: 140px;
-    left: 411px;
-    top: 280px;
 
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
 
-    color: #000000;
-}
-#dash{
-    display: flex;
-    position: absolute;
-    width: 998px;
-    height: 140px;
-    left: 955px;
-    top: 280px;
 
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
-#aantal {
-    display: flex;
-    position: absolute;
-    width: 998px;
-    height: 140px;
-    left: 1050px;
-    top: 280px;
-
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
-#min{
-    display: flex;
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    left: 1300px;
-    top: 315px;
-
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
-#number{
-    display: flex;
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    left: 1380px;
-    top: 315px;
-
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
-#plus{
-    display: flex;
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    left: 1420px;
-    top: 315px;
-
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
-}
-#Shopping2 {
-    position: absolute;
-    width: 1165px;
-    height: 130px;
-    left: 374px;
-    top: 500px;
-    background: #D9D9D9;
-    color: black
-}
-#backwall2 {
-
-    width: 1207px;
-    height: 160px;
-    margin-left: 350px;
-    margin-top: 190px;
-
-    background: #471609;
-}
 
 #item2 {
     position: absolute;
@@ -164,30 +27,15 @@
     align-items: center;
 
     color: #000000;
-}
-#dash2{
-    display: flex;
-    position: absolute;
-    width: 998px;
-    height: 140px;
-    left: 955px;
-    top: 500px;
 
-    font-family: 'Geo';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 44px;
-    display: flex;
-    align-items: center;
+#minknop{
+    background-color: #D9D9D9;
+    cursor: pointer;
 }
-#aantal2 {
-    display: flex;
-    position: absolute;
-    width: 998px;
-    height: 140px;
-    left: 1050px;
-    top: 500px;
+
+#plusknop{
+    background-color: #D9D9D9;
+    cursor: pointer;
 
     font-family: 'Geo';
     font-style: normal;
@@ -245,3 +93,20 @@
     display: flex;
     align-items: center;
 }
+
+#kopen{
+    background-color: #471609;  
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+#kopen:hover{
+    filter: contrast(60%);
+}
+ 

@@ -1,10 +1,29 @@
 <?php
-$id = $_GET['id'];
+
+// $host = 'localhost';
+// $db   = 's168308_project';
+// $user = 's168308_Project';
+// $pass = 'Pr0ject';
+// $charset = 'utf8mb4';
+
+// $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+// $options = [
+//     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+//     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+//     PDO::ATTR_EMULATE_PREPARES   => false,
+// ];
+
+
+// try {
+//     $pdo = new PDO($dsn, $user, $pass, $options);
+// } catch (\PDOException $e) {
+//     throw new \PDOException($e->getMessage(), (int)$e->getCode());
+// }
 
 $host = 'localhost';
-$db   = 's168308_project';
-$user = 's168308_Project';
-$pass = 'Pr0ject';
+$db = 's168308_project';
+$user = 'bit_academy';
+$pass = 'bit_academy';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -14,13 +33,13 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES   => false,
 ];
 
-// shows version of the database
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
-
+session_start();
+$id = $_GET['id'];
 
 //check everything from db
 $query = $pdo->prepare('SELECT * FROM tickets WHERE id = :id');
@@ -75,6 +94,12 @@ function getDatum()
 {
     global $ticket;
     return $ticket->datum;
+}
+
+if (isset($_POST['winkelmandknop'])) {   
+    $id = $_POST['winkelmandknop'];
+
+    header("Location: shoppinginsert.php?id=" . $id);
 }
 
 ?>
@@ -133,7 +158,7 @@ function getDatum()
                 <div id="login">
                     <a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
                     </a>
-                    <a href="Hobby.html" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
+                    <a href="shopping.php" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
                     </a>
                 </div>
 
@@ -156,6 +181,15 @@ function getDatum()
                     <p>Datum: </p>
                     <p id="ticketDetails"><?php echo getdatum(); ?>
                 </div>
+                <form  id="knop" action="detailPaginas.php" method="post"> 
+
+                <button id="toevoegen" name="winkelmandknop" <?php echo" value='$id'"?>>
+                <img src="Img/toevoegen.png" id="toevoegen"> 
+                  </button> 
+                <!-- <input  type='submit'<?php echo" value='$id'"?> name='winkelmandknop'>;
+                 -->
+                </form>
+
                 <br><br>
 
                 <div id="gettingDescriptionMargin">
@@ -174,7 +208,7 @@ function getDatum()
             <a id="contact-color">
                 <h2>|</h2>
             </a>
-            <a href="Hobby.html" id="contact-color">
+            <a href="sales.php" id="contact-color">
                 <h2>Sales</h2>
             </a>
         </footer>

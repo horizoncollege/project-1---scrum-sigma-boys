@@ -95,6 +95,79 @@ session_start();
                 </div>
 
             </div>
+        </header>
+
+
+        <?php
+
+        $sql = "SELECT * FROM orderitems";
+        $result = $pdo->query($sql);
+        $ordersql = $pdo->prepare("SELECT * FROM orderitems");
+        $ordersql->execute();
+        $orderarray = $ordersql->fetchAll(PDO::FETCH_OBJ);
+
+        echo '<table class="tickets"> Tickets';
+        echo "<tr> <td>Naam<td/> <td>Prijs<td/> <td> Aantal</td> <tr/> ";
+
+
+        $totaal = 0;
+foreach ($orderarray as $key) {
+    $i = $key->prijs;
+    // print_r($orderarray);
+    $ticketprijs =  $key->prijs;
+    $ticketaantal = $key->aantal;
+    $totaal = $ticketprijs * $ticketaantal + $totaal;
+
+    echo "<td>" . $key->ordernaam . "<td/>
+        <td>" . "€" .  $key->prijs . "<td/>
+        <td>" . ' <form action="shopping.php" method="post">
+            <button  id="minknop"  name="minknop' . $i . '" >  
+                <img src="Img/min.png" id="min">
+            </button>' . $key->aantal  .
+        '<button id="plusknop" name="plusknop' . $i . '" >
+                <img src="Img/plus.png" id="plus"> 
+            </button> 
+        </form>' . "<td/> <tr/>";
+
+    
+
+    if (isset($_POST['plusknop' . $i])) {
+        $updateplus = "UPDATE orderitems SET aantal = aantal + 1 WHERE orderID = :id";
+        $stmtplus = $pdo->prepare($updateplus);
+        $stmtplus->execute(['id' => $key->orderID]);
+    }
+    if (isset($_POST['minknop' . $i])) {
+        if ($key->aantal <= 1) {
+            $updatemin = "DELETE FROM orderitems WHERE orderID = :id";
+            $stmtmin = $pdo->prepare($updatemin);
+            $stmtmin->execute(['id' => $key->orderID]); 
+        }
+        $updatemin = "UPDATE orderitems SET aantal = aantal - 1 WHERE orderID = :id";
+        $stmtmin = $pdo->prepare($updatemin);
+        $stmtmin->execute(['id' => $key->orderID]);
+    }
+}
+
+        echo "</table>";
+        echo "<table>";
+        echo "<tr> <td> Totaal Bedrag</td> <tr/> ";
+        echo "<td>$ $totaal <td/>"; 
+        echo "<td>
+        <form action='shopping.php'method='post'>
+        <input id='kopen' type='submit' value='Kopen'  name='kopen'>
+        </form>
+            <td/> <tr/>";
+        echo "</table>";
+
+        if (isset($_POST['kopen'])) {
+            header("Location: gekocht.php");
+        }
+        
+        
+        ?>
+
+
+
 
 
         </header>
