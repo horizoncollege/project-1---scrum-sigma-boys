@@ -1,3 +1,30 @@
+<?php
+$host = 'localhost';
+$db = 's168308_project';
+$user = 'bit_academy';
+$pass = 'bit_academy';
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+}
+            $kopen = "TRUNCATE TABLE orderitems;";
+            $stmt = $pdo->prepare($kopen);
+            $stmt->execute();
+            header('Refresh:3; url=index.php');
+    
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +34,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
     <link rel="stylesheet" href="style/contact.css?1">
-    <title>Ontvangen</title>
+    <title>Gekocht</title>
 
 <body>
     <header class="Header">
@@ -50,7 +77,7 @@
         </div>
     </header>
     <h1 id="ontvangen">
-        Gekocht
+        Gekocht! Bedankt voor u aankoop
     </h1>
     <footer>
         <a href="contact.php" id="contact-color">
