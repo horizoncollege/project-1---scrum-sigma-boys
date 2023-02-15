@@ -26,36 +26,39 @@ try {
 $Users = $pdo->prepare("SELECT * FROM users");
 $Users->execute();
 $AllUsersArray = $Users->fetchAll(PDO::FETCH_OBJ);
-
-function echoFilm()
+// checkes all users and puts them in a Table
+function echoUsers()
 {
     global $AllUsersArray;
     foreach ($AllUsersArray  as $key) {
         echo
         '<tr> .
             <td>';
+        echo $key->userID;
         echo $key->username;
         echo '</td>
             <td>';
 
-        if ($key->isAdmin == 2) {
+        if ($key->isAdmin == 1) {
             echo "Admin";
-        }elseif ($key->isAdmin == 1){
-           
+
+        } elseif ($key->isAdmin == 1) {
+
             echo "Event Organizer";
-        }
-            else {
+
+        } else {
             echo "User";
         }
-        echo '</td>';
+        echo '</td> <td>';
         if ($key->isAdmin == 0) {
+
             echo '</td>
             <td><a href="MakeAdmin.php?id=';
             echo $key->userID;
             echo '" id="WebID">make Admin</a> <br> 
             <a href="MakeEventor.php?id=';
             echo $key->userID;
-            echo '" id="WebID">make Event organisator</a</td>';
+            echo '" id="WebID">make Event organisator</a></td>';
         } elseif ($key->isAdmin == 2) {
             echo '</td>
             <td><a href="MakeUser.php?id=';
@@ -63,35 +66,21 @@ function echoFilm()
             echo '" id="WebID">make User</a> <br> 
             <a href="MakeEventor.php?id=';
             echo $key->userID;
-            echo '" id="WebID">make Event organisator</a</td>';
-        }else{echo '</td>
+            echo '" id="WebID">make Event organisator</a></td>';
+        } else {
+            echo '</td>
             <td><a href="MakeUser.php?id=';
             echo $key->userID;
             echo '" id="WebID">make User</a> <br> 
             <a href="MakeAdmin.php?id=';
             echo $key->userID;
-            echo '" id="WebID">make Admin</a</td>';
-
+            echo '" id="WebID">make Admin</a></td>';
         }
+
+        '</td>';
     }
 }
-if (isset($_POST['Admin'])) {
-    global $AllUsersArray;
-    $rights = 1;
-    $sql = "UPDATE users SET isAdmin = ?  WHERE username = '?'";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$rights]);
-} else {
-    echo "<h1>deze shit werkt niet </h1>";
-}
-if (isset($_POST['User'])) {
-    $id = 0;
-    $sql = "UPDATE users SET isAdmin = ?  WHERE username = 'Henk'";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$id]);
-} else {
-    echo "<h1>deze shit werkt niet </h1>";
-}
+
 ?>
 
 
@@ -103,8 +92,8 @@ if (isset($_POST['User'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/main.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="style/Main.css">
+    <title>Create an event</title>
 </head>
 
 <body>
@@ -130,6 +119,7 @@ if (isset($_POST['User'])) {
             if (isset($_SESSION['loggedInUser'])) {
                 echo ' <a href="logout.php" onClick="return confirmLogout()">UITLOGGEN</a>';
             }
+
             ?>
 
         </div>
@@ -194,6 +184,7 @@ if (isset($_POST['User'])) {
                             return $userAdmin->isAdmin;
                         }
                         $userAdminNumber = getPoster();
+
                         if ($userAdminNumber == 2) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">
@@ -201,7 +192,7 @@ if (isset($_POST['User'])) {
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="addAdmin.php">Add admin</a>
+                                <a href="addAdmin.php" id=FilmsCurrentPage >Add admin</a>
                             </div>
                         </div>';
                         } elseif ($userAdminNumber == 1) {
@@ -210,10 +201,10 @@ if (isset($_POST['User'])) {
                         <img src="Img/admin.png" id="login" alt="Login_button">
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
-                                <a href="CreateEvent.php">create event</a>
+                                <a href="CreateEvent.php">create event</a>  
                             </div>
                         </div>';
-                        }elseif ($userAdminNumber == 0) {
+                        } elseif ($userAdminNumber == 0) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                             <div class="dropdown">
                             <img src="Img/admin.png" id="login" alt="Login_button">
@@ -223,7 +214,6 @@ if (isset($_POST['User'])) {
                             </div>';
                         }
                     }
-
 
                     ?>
                     <!-- log out confirmation -->
@@ -239,6 +229,7 @@ if (isset($_POST['User'])) {
                     </script>
 
                 </div>
+                <!-- mving shopping card as required -->
                 <?php if (!isset($_SESSION['loggedInUser'])) {
                     echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button"></a>';
                 }
@@ -258,7 +249,7 @@ if (isset($_POST['User'])) {
                 <th>Change Admin Status</th>
             </tr>
             <tr>
-                <?php echoFilm() ?>
+                <?php echoUsers() ?>
             </tr>
         </table>
 

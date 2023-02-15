@@ -3,35 +3,30 @@
     src: url(../Fonts/Geo-Regular.ttf);
 }
 
-table{
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    border: 5px;
-    border-color: #471609;
-    border-width: 15px;
-    border-style: solid;
-    display: flex;
-    flex-direction: column;
-    background-color: #D9D9D9;
-    width: 70%;
-    height: 20%;
-    margin-left: 10%;
-    font-family: Geo;
-    font-size: 200%;
-}
 
-#plus{
-    height: 20px;
-    width: 20px;
-    padding-left: 3px;
-}
 
-#min{
-    height: 20px;
-    width: 20px;
-    padding-right: 3px;
-}
+
+
+
+
+
+
+#item2 {
+    position: absolute;
+    width: 998px;
+    height: 140px;
+    left: 411px;
+    top: 500px;
+
+    font-family: 'Geo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
 
 #minknop{
     background-color: #D9D9D9;
@@ -41,8 +36,63 @@ table{
 #plusknop{
     background-color: #D9D9D9;
     cursor: pointer;
-}
 
+    font-family: 'Geo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+}
+#min2{
+    display: flex;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    left: 1300px;
+    top: 530px;
+
+    font-family: 'Geo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+}
+#number2{
+    display: flex;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    left: 1380px;
+    top: 530px;
+
+    font-family: 'Geo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+}
+#plus2{
+    display: flex;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    left: 1420px;
+    top: 530px;
+
+    font-family: 'Geo';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 44px;
+    display: flex;
+    align-items: center;
+}
 
 #kopen{
     background-color: #471609;  

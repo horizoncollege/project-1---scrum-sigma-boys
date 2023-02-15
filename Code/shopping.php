@@ -1,9 +1,9 @@
 <?php
 
 $host = 'localhost';
-$db = 's168308_project';
-$user = 'bit_academy';
-$pass = 'bit_academy';
+$db   = 's168308_project';
+$user = 's168308_Project';
+$pass = 'Pr0ject';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -13,6 +13,7 @@ $options = [
     PDO::ATTR_EMULATE_PREPARES   => false,
 ];
 
+// shows version of the database
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
@@ -92,6 +93,7 @@ session_start();
                     <a href="shopping.php" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
                     </a>
                 </div>
+
             </div>
         </header>
 
@@ -167,6 +169,29 @@ foreach ($orderarray as $key) {
 
 
 
+
+        </header>
+        <div id="body">
+            <h1 id="mandje">Winkelmandje</h1>
+            <h2 id="backwall"></h2>
+            <h3 id=Shopping>
+                <h3 id="item">FILM - Minions: The rise of Gru</h3>
+                <h3 id=dash>-</h3>
+                <h3 id="aantal">aantal tickets</h3>
+                <img src="Img/min.png" id="min" alt="Ree" srcset="">
+                <h3 id="number">2</h3>
+                <img src="Img/plus.png" id="plus" alt="Ree" srcset="">
+            </h3>
+            <h1 id="mandje2">Winkelmandje</h1>
+            <h2 id="backwall2"></h2>
+            <h3 id=Shopping2>
+                <h3 id="item2">FILM - Minions: The rise of Gru</h3>
+                <h3 id=dash2>-</h3>
+                <h3 id="aantal2">aantal tickets</h3>
+                <img src="Img/min.png" id="min2" alt="Ree" srcset="">
+                <h3 id="number2">2</h3>
+                <img src="Img/plus.png" id="plus2" alt="Ree" srcset="">
+            </h3>
         </div>
         <footer>
             <a href="contact.php" id="contact-color">
@@ -179,8 +204,6 @@ foreach ($orderarray as $key) {
                 <h2>Sales</h2>
             </a>
         </footer>
-
-
 </body>
 
 </html>

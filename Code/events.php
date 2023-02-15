@@ -21,6 +21,24 @@ try {
 }
 
 session_start();
+//gets the 4 upcoming events
+$querySelectFilmTickets = $pdo->prepare("SELECT * FROM tickets WHERE ticketType = 'EVENT' ORDER BY datum ASC LIMIT 4;");
+$querySelectFilmTickets->execute();
+$FilmTickets_array = $querySelectFilmTickets->fetchAll(PDO::FETCH_OBJ);
+
+function echoEvent()
+{
+    global $FilmTickets_array;
+    foreach ($FilmTickets_array as $key) {
+        echo '<a href="detailPaginas.php?id=';
+        echo $key->id;
+        echo '"id="body-color">';
+        echo '<img src="Img/';
+        echo $key->poster;
+        echo '" alt="shopping_button" id="img-border">';
+    }
+}
+
 
 ?>
 
@@ -39,6 +57,7 @@ session_start();
 
 <body>
 
+
     <!-- Top Navigation Menu -->
     <div class="topnav">
         <a href="index.php" class="active">SIGMA MEDIA</a>
@@ -50,19 +69,19 @@ session_start();
             if (isset($_SESSION['loggedInUser'])) {
                 echo '<h1 id= "nav-color"> Welkom ' . $_SESSION['user'] . '</h1>';
             }
-
             ?>
             <a href="film.php">FILMS</a>
             <a href="musical.php">MUSICALS</a>
-            <a href="Concerten.php">CONCERTEN</a>
-            <a href="events.php" id="EventsCurrentPage">EVENTS</a>
+            <a href="Concerten.php" id="FilmsCurrentPage">CONCERTEN</a>
+            <a href="events.php">EVENTS</a>
             <?php if (!isset($_SESSION['loggedInUser'])) {
                 echo ' <a href="login.php">INLOGGEN</a>';
             }
             if (isset($_SESSION['loggedInUser'])) {
                 echo ' <a href="logout.php" onClick="return confirmLogout()">UITLOGGEN</a>';
             }
-           ?>
+
+            ?>
         </div>
         <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -78,39 +97,35 @@ session_start();
                         <h1>SIGMA MEDIA</h1>
                     </a>
                 </div>
-                <div id="nav-bar" class="menu">
-                    <a href="film.php" class="menuItem" id="nav-color">
-                        <h2>FILMS</h2>
+                <div id="nav-bar">
+                    <a href="film.php" id="nav-color">
+                        <h2 id="FilmCurrentPage">FILMS</h2>
                     </a>
                     <a>
-                        <h2 class="line" id="nav-color">|</h2>
+                        <h2 id="nav-color">|</h2>
                     </a>
-                    <a href="musical.php" class="menuItem" id="nav-color">
+                    <a href="musical.php" id="nav-color">
                         <h2>MUSICALS</h2>
                     </a>
                     <a>
-                        <h2 class="line" id="nav-color">|</h2>
+                        <h2 id="nav-color">|</h2>
                     </a>
-                    <a href="Concerten.php" class="menuItem" id="nav-color">
+                    <a href="Concerten.php" id="nav-color">
                         <h2>CONCERTEN</h2>
                     </a>
                     <a>
-                        <h2 class="line" id="nav-color">|</h2>
+                        <h2 id="nav-color">|</h2>
                     </a>
-                    <a href="events.php" class="menuItem"  id="EventsCurrentPage">
+
+                    <a href="events.php" id=FilmsCurrentPage class="menuItem" id="nav-color">
                         <h2>EVENTS</h2>
                     </a>
 
                     </a>
                 </div>
-                <!-- Hamburger -->
-                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <!-- show/hide login button -->
                 <div id="login">
                     <?php if (!isset($_SESSION['loggedInUser'])) {
-                        echo '<a href="login.php" id="login-Guest"> <img src="Img/admin.png" alt="Login_button">
+                        echo '<a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
                     }
                     if (isset($_SESSION['loggedInUser'])) {
@@ -125,14 +140,23 @@ session_start();
                             return $userAdmin->isAdmin;
                         }
                         $userAdminNumber = getPoster();
-                        if ($userAdminNumber == 1) {
+                        if ($userAdminNumber == 2) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">
                         <img src="Img/admin.png" id="login" alt="Login_button">
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="testing">Add admin</a>
+                                <a href="addAdmin.php">Add admin</a>
+                            </div>
+                        </div>';
+                        } elseif ($userAdminNumber == 1) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                        <div class="dropdown">
+                        <img src="Img/admin.png" id="login" alt="Login_button">
+                            <div class="dropdown-content">
+                                <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                <a href="CreateEvent.php">create event</a>  
                             </div>
                         </div>';
                         } elseif ($userAdminNumber == 0) {
@@ -145,9 +169,9 @@ session_start();
                             </div>';
                         }
                     }
-
                     ?>
-                    <!-- log out confirmation -->
+                    <a href="Hobby.html" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
+                    </a>
                     <script language="JavaScript">
                         function confirmLogout() {
 
@@ -158,29 +182,21 @@ session_start();
                             }
                         }
                     </script>
-
                 </div>
                 <?php if (!isset($_SESSION['loggedInUser'])) {
-                    echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button">';
+                    echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button"></a>';
                 }
                 if (isset($_SESSION['loggedInUser'])) {
-                    echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button">';
+                    echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button"></a>';
                 }
 
                 ?>
             </div>
 
 
-        </header>
+        </header>  
         <div id="body">
-            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
-            </a>
-            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
-            </a>
-            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
-            </a>
-            <a href="Hobby.html" id="body-color"> <img src="Img/placeholder.png" alt="shopping_button" id="img-border">
-            </a>
+            <?php echoEvent(); ?>
         </div>
         <h3>
             <a href="seeEvents.php" id="SeeMoreStyle"> <img src="Img/arrow.png" alt="shopping_button" id="SeeMoreImg">

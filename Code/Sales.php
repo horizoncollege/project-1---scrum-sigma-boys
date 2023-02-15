@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $host = 'localhost';
 $db   = 's168308_project';
 $user = 's168308_Project';
@@ -20,32 +22,60 @@ try {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 
-$stmt = $pdo->prepare("SELECT * FROM tickets where ticketType='MUSICAL'");
-$stmt->execute();
-$film_array = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-function echoFilms()
+$Users = $pdo->prepare("SELECT * FROM users");
+$Users->execute();
+$AllUsersArray = $Users->fetchAll(PDO::FETCH_OBJ);
+// checkes all users and puts them in a Table
+function echoUsers()
 {
-    global $film_array;
-    foreach ($film_array as $key) {
+    global $AllUsersArray;
+    foreach ($AllUsersArray  as $key) {
         echo
-        '<tr>
+        '<tr> .
             <td>';
-        echo $key->ticketName;
+        echo $key->username;
         echo '</td>
             <td>';
-        echo $key->Location;
-        echo '</td>
-            <td><a class="details" href="detailPaginas.php?id=';
-        echo $key->id;
-        echo '">details</a></td>
-        </tr>';
+
+        if ($key->isAdmin == 2) {
+            echo "Admin";
+        } elseif ($key->isAdmin == 1) {
+
+            echo "Event Organizer";
+        } else {
+            echo "User";
+        }
+        echo '</td>';
+        if ($key->isAdmin == 0) {
+            echo '</td>
+            <td><a href="MakeAdmin.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make Admin</a> <br> 
+            <a href="MakeEventor.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make Event organisator</a></td>';
+        } elseif ($key->isAdmin == 2) {
+            echo '</td>
+            <td><a href="MakeUser.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make User</a> <br> 
+            <a href="MakeEventor.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make Event organisator</a></td>';
+        } else {
+            echo '</td>
+            <td><a href="MakeUser.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make User</a> <br> 
+            <a href="MakeAdmin.php?id=';
+            echo $key->userID;
+            echo '" id="WebID">make Admin</a></td>';
+        }
     }
 }
-
-
-session_start();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,15 +85,13 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/navbar.css">
-    <link rel="stylesheet" href="style/Main.css">
-    <script src="javascript/Index.js"></script>
-    <title>Sigma Media</title>
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/Sales.css">
+    <title>Document</title>
 </head>
 
 <body>
-
-    
-<div class="topnav">
+    <div class="topnav">
         <a href="index.php" class="active">SIGMA MEDIA</a>
         <!-- Navigation links (hidden by default) -->
         <div id="myLinks">
@@ -76,8 +104,8 @@ session_start();
 
             ?>
             <a href="film.php">FILMS</a>
-            <a href="musical.php" id=FilmsCurrentPage>MUSICALS</a>
-            <a href="Concerten.php" >CONCERTEN</a>
+            <a href="musical.php">MUSICALS</a>
+            <a href="Concerten.php">CONCERTEN</a>
             <a href="events.php">EVENTS</a>
             <?php if (!isset($_SESSION['loggedInUser'])) {
                 echo ' <a href="login.php">INLOGGEN</a>';
@@ -110,13 +138,13 @@ session_start();
                     <a>
                         <h2 class="line" id="nav-color">|</h2>
                     </a>
-                    <a href="musical.php" id=FilmsCurrentPage class="menuItem" id="nav-color">
+                    <a href="musical.php" class="menuItem" id="nav-color">
                         <h2>MUSICALS</h2>
                     </a>
                     <a>
                         <h2 class="line" id="nav-color">|</h2>
                     </a>
-                    <a href="Concerten.php"  class="menuItem" id="nav-color">
+                    <a href="Concerten.php" class="menuItem" id="nav-color">
                         <h2>CONCERTEN</h2>
                     </a>
                     <a>
@@ -194,6 +222,7 @@ session_start();
                     </script>
 
                 </div>
+                <!-- mving shopping card as required -->
                 <?php if (!isset($_SESSION['loggedInUser'])) {
                     echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button"></a>';
                 }
@@ -205,20 +234,14 @@ session_start();
             </div>
 
 
-        </header>  
-        <div id="SeeFilm">
-            <table>
-                <tr>
-                    <th>title</th>
-                    <th>location</th>
-                    <th>More details</th>
-                </tr>
+        </header>
 
-                <tr>
-                    <?php echofilms($stmt); ?>
-                </tr>
-            </table>
+        <div id="BrownContainer">
+            <div id="SalesContainer">
+                <h1 id=salesText>We hebben op dit moment geen sales</h1>
+            </div>
         </div>
+
 
         <footer>
             <a href="contact.php" id="contact-color">
@@ -227,10 +250,7 @@ session_start();
             <a id="contact-color">
                 <h2>|</h2>
             </a>
-            <a href="Hobby.html" id="contact-color">
+            <a href="Hobby.html" id=ContactCurrentPage id="contact-color">
                 <h2>Sales</h2>
             </a>
         </footer>
-</body>
-
-</html>
