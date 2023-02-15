@@ -1,0 +1,29 @@
+@font-face {
+    font-family: "Geo";
+    src: url(../Fonts/Geo-Regular.ttf);
+}
+
+#salesText{
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    color: black;
+    font-family: "Geo";
+    font-size: 100px;
+}
+#SalesContainer{
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 96%;
+    height: 450px;
+    position: absolute;
+    background-color: white
+}
+#BrownContainer{
+    margin-top: 5%;
+    margin-left: 10%;
+    width: 80%;
+    height: 500px;
+    position: absolute;
+    background-color: #471609;
+}
