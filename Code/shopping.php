@@ -117,7 +117,7 @@ foreach ($orderarray as $key) {
     $totaal = $ticketprijs * $ticketaantal + $totaal;
 
     echo "<td>" . $key->ordernaam . "<td/>
-        <td>" . "$" .  $key->prijs . "<td/>
+        <td>" . "€" .  $key->prijs . "<td/>
         <td>" . ' <form action="shopping.php" method="post">
             <button  id="minknop"  name="minknop' . $i . '" >  
                 <img src="Img/min.png" id="min">
@@ -149,23 +149,22 @@ foreach ($orderarray as $key) {
         echo "</table>";
         echo "<table>";
         echo "<tr> <td> Totaal Bedrag</td> <tr/> ";
-        echo "<td>$ $totaal <td/> <tr/>";
+        echo "<td>$ $totaal <td/>"; 
+        echo "<td>
+        <form action='shopping.php'method='post'>
+        <input id='kopen' type='submit' value='Kopen'  name='kopen'>
+        </form>
+            <td/> <tr/>";
         echo "</table>";
 
-        // if (isset($_POST['plusknop'])) {
-        //     $plusaantal = $ticketaantal + 1;
-        //     $updateplus = "UPDATE orderitems SET aantal = :plusaantal WHERE orderID = :id";
-        //     $stmtplus = $pdo->prepare($updateplus);
-        //     $stmtplus->execute(['plusaantal' => $plusaantal, 'id' => $row["orderID"]]);
-        //   }
+        if (isset($_POST['kopen'])) {
+            header("Location: gekocht.php");
+        }
+        
+        
         ?>
-<script type="text/javascript">
-    $('#contactForm').submit(function () {
-       $.post("shopping.php",$("#contactForm").serialize(), function(data){
-       });
-        return false;
-    });
-</script>
+
+
 
 
         </div>
