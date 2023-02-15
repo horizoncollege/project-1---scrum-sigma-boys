@@ -194,7 +194,19 @@ try {
                         </a>';
                     }
                     if (isset($_SESSION['loggedInUser'])) {
-                        echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                        $username = $_SESSION['user'];
+                        $userquery = $pdo->prepare("SELECT * FROM users WHERE username = '$username'");
+                        $userquery->execute();
+                        $userAdmin = $userquery->fetch(PDO::FETCH_OBJ);
+
+                        function getPoster()
+                        {
+                            global $userAdmin;
+                            return $userAdmin->isAdmin;
+                        }
+                        $userAdminNumber = getPoster();
+                        if ($userAdminNumber == 2) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">
                         <img src="Img/admin.png" id="login" alt="Login_button">
                             <div class="dropdown-content">
@@ -203,6 +215,24 @@ try {
                                 <a href="#">Add admin</a>
                             </div>
                         </div>';
+                        } elseif ($userAdminNumber == 1) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                        <div class="dropdown">
+                        <img src="Img/admin.png" id="login" alt="Login_button">
+                            <div class="dropdown-content">
+                                <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                <a href="CreateEvent.php">create event</a>  
+                            </div>
+                        </div>';
+                        } elseif ($userAdminNumber == 0) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                            <div class="dropdown">
+                            <img src="Img/admin.png" id="login" alt="Login_button">
+                                <div class="dropdown-content">
+                                    <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                </div>
+                            </div>';
+                        }
                     }
 
                     ?>
@@ -248,7 +278,7 @@ try {
             <a id="contact-color">
                 <h2>|</h2>
             </a>
-            <a href="Hobby.html" id="contact-color">
+            <a href="Sales.php" id="contact-color">
                 <h2>Sales</h2>
             </a>
         </footer>

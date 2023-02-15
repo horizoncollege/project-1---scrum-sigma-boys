@@ -58,8 +58,7 @@ function echoConcert()
 <body>
 
 
-    <!-- Top Navigation Menu -->
-    <div class="topnav">
+<div class="topnav">
         <a href="index.php" class="active">SIGMA MEDIA</a>
         <!-- Navigation links (hidden by default) -->
         <div id="myLinks">
@@ -72,7 +71,7 @@ function echoConcert()
             ?>
             <a href="film.php">FILMS</a>
             <a href="musical.php">MUSICALS</a>
-            <a href="Concerten.php" id="ConcertenCurrentPage">CONCERTEN</a>
+            <a href="Concerten.php" id="FilmsCurrentPage">CONCERTEN</a>
             <a href="events.php">EVENTS</a>
             <?php if (!isset($_SESSION['loggedInUser'])) {
                 echo ' <a href="login.php">INLOGGEN</a>';
@@ -110,8 +109,10 @@ function echoConcert()
                     <a>
                         <h2 id="nav-color">|</h2>
                     </a>
-                    <a href="Concerten.php" id="nav-color">
-                        <h2 id="ConcertenCurrentPage">CONCERTEN</h2>
+
+                    <a href="Concerten.php" id=FilmsCurrentPage class="menuItem" id="nav-color">
+                        <h2>CONCERTEN</h2>
+
                     </a>
                     <a>
                         <h2 id="nav-color">|</h2>
@@ -128,9 +129,47 @@ function echoConcert()
                         </a>';
                     }
                     if (isset($_SESSION['loggedInUser'])) {
-                        echo '<h1 id="nav-color">' . $_SESSION['user'] . '</h1>
-                        <a href="logout.php" id="log" onClick="return confirmLogout()"> <img src="Img/admin.png" alt="Login_button">
-                        </a>';
+
+                        $username = $_SESSION['user'];
+                        $userquery = $pdo->prepare("SELECT * FROM users WHERE username = '$username'");
+                        $userquery->execute();
+                        $userAdmin = $userquery->fetch(PDO::FETCH_OBJ);
+
+                        function getPoster()
+                        {
+                            global $userAdmin;
+                            return $userAdmin->isAdmin;
+                        }
+                        $userAdminNumber = getPoster();
+                        if ($userAdminNumber == 2) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                        <div class="dropdown">
+                        <img src="Img/admin.png" id="login" alt="Login_button">
+                            <div class="dropdown-content">
+                                <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                <a href="CreateEvent.php">create event</a>
+                                <a href="addAdmin.php">Add admin</a>
+                            </div>
+                        </div>';
+                        } elseif ($userAdminNumber == 1) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                        <div class="dropdown">
+                        <img src="Img/admin.png" id="login" alt="Login_button">
+                            <div class="dropdown-content">
+                                <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                <a href="CreateEvent.php">create event</a>  
+                            </div>
+                        </div>';
+                        } elseif ($userAdminNumber == 0) {
+                            echo '<h1 id="nav-color">' . $_SESSION['user'] . '
+                            <div class="dropdown">
+                            <img src="Img/admin.png" id="login" alt="Login_button">
+                                <div class="dropdown-content">
+                                    <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
+                                </div>
+                            </div>';
+                        }
+
                     }
                     ?>
                     <a href="Hobby.html" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
@@ -147,10 +186,19 @@ function echoConcert()
                     </script>
                 </div>
 
+                <?php if (!isset($_SESSION['loggedInUser'])) {
+                    echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button"></a>';
+                }
+                if (isset($_SESSION['loggedInUser'])) {
+                    echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button"></a>';
+                }
+
             </div>
 
 
+
         </header>
+
         <div id="body">
             <?php echoConcert(); ?>
         </div>

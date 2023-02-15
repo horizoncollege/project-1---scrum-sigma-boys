@@ -22,6 +22,16 @@
     text-decoration: underline;
     color: #b11a09;
 }
+#ContactCurrentPage{
+    text-decoration: underline;
+    color: white;
+    font-size: 35px;
+}
+#WebID{
+    color: white; 
+    text-decoration: dotted;
+}
+
 
 .working {
     display: none;
