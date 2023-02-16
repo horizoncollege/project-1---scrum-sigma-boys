@@ -34,22 +34,20 @@ function echoUsers()
         echo
         '<tr> .
             <td>';
-        echo $key->userID;
         echo $key->username;
         echo '</td>
             <td>';
 
-        if ($key->isAdmin == 1) {
+        if ($key->isAdmin == 2) {
             echo "Admin";
-
         } elseif ($key->isAdmin == 1) {
 
             echo "Event Organizer";
-
         } else {
             echo "User";
         }
-        echo '</td> <td>';
+        echo '</td>';
+        // Sends code through another site and changes peoples priveledge numbers
         if ($key->isAdmin == 0) {
 
             echo '</td>
@@ -76,8 +74,6 @@ function echoUsers()
             echo $key->userID;
             echo '" id="WebID">make Admin</a></td>';
         }
-
-        '</td>';
     }
 }
 
@@ -172,6 +168,7 @@ function echoUsers()
                         echo '<a href="login.php" id="login-Guest"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
                     }
+                    // Checks if logged in
                     if (isset($_SESSION['loggedInUser'])) {
                         $username = $_SESSION['user'];
                         $userquery = $pdo->prepare("SELECT * FROM users WHERE username = '$username'");
@@ -184,7 +181,7 @@ function echoUsers()
                             return $userAdmin->isAdmin;
                         }
                         $userAdminNumber = getPoster();
-
+                        // checks user number and grats priveledges
                         if ($userAdminNumber == 2) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">
@@ -229,7 +226,7 @@ function echoUsers()
                     </script>
 
                 </div>
-                <!-- mving shopping card as required -->
+                <!-- moving shopping card as required -->
                 <?php if (!isset($_SESSION['loggedInUser'])) {
                     echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button"></a>';
                 }
@@ -262,7 +259,7 @@ function echoUsers()
             <a id="contact-color">
                 <h2>|</h2>
             </a>
-            <a href="Hobby.html" id="contact-color">
+            <a href="Sales.php" id="contact-color">
                 <h2>Sales</h2>
             </a>
         </footer>

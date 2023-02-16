@@ -91,7 +91,7 @@ function echoUsers()
 </head>
 
 <body>
-    <div class="topnav">
+<div class="topnav">
         <a href="index.php" class="active">SIGMA MEDIA</a>
         <!-- Navigation links (hidden by default) -->
         <div id="myLinks">
@@ -166,6 +166,7 @@ function echoUsers()
                         echo '<a href="login.php" id="login-Guest"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
                     }
+                    // Checks if logged in
                     if (isset($_SESSION['loggedInUser'])) {
                         $username = $_SESSION['user'];
                         $userquery = $pdo->prepare("SELECT * FROM users WHERE username = '$username'");
@@ -178,6 +179,7 @@ function echoUsers()
                             return $userAdmin->isAdmin;
                         }
                         $userAdminNumber = getPoster();
+                        // checks user number and grats priveledges
                         if ($userAdminNumber == 2) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">
@@ -185,7 +187,7 @@ function echoUsers()
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="addAdmin.php">Add admin</a>
+                                <a href="addAdmin.php" id=FilmsCurrentPage >Add admin</a>
                             </div>
                         </div>';
                         } elseif ($userAdminNumber == 1) {
@@ -222,7 +224,7 @@ function echoUsers()
                     </script>
 
                 </div>
-                <!-- mving shopping card as required -->
+                <!-- moving shopping card as required -->
                 <?php if (!isset($_SESSION['loggedInUser'])) {
                     echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button"></a>';
                 }
@@ -234,8 +236,7 @@ function echoUsers()
             </div>
 
 
-        </header>
-
+        </header> 
         <div id="BrownContainer">
             <div id="SalesContainer">
                 <h1 id=salesText>We hebben op dit moment geen sales</h1>
@@ -250,7 +251,7 @@ function echoUsers()
             <a id="contact-color">
                 <h2>|</h2>
             </a>
-            <a href="Hobby.html" id=ContactCurrentPage id="contact-color">
+            <a href="Sales.php" id=ContactCurrentPage id="contact-color">
                 <h2>Sales</h2>
             </a>
         </footer>

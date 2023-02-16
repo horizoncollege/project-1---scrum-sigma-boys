@@ -61,9 +61,6 @@ session_start();
 </head>
 
 <body>
-
-    
-
 <div class="topnav">
         <a href="index.php" class="active">SIGMA MEDIA</a>
         <!-- Navigation links (hidden by default) -->
@@ -76,7 +73,7 @@ session_start();
             }
 
             ?>
-            <a href="film.php" id=FilmsCurrentPage>FILMS</a>
+            <a href="film.php">FILMS</a>
             <a href="musical.php">MUSICALS</a>
             <a href="Concerten.php">CONCERTEN</a>
             <a href="events.php">EVENTS</a>
@@ -105,7 +102,7 @@ session_start();
                     </a>
                 </div>
                 <div id="nav-bar" class="menu">
-                    <a href="film.php" id=FilmsCurrentPage class="menuItem" id="nav-color">
+                    <a href="film.php" class="menuItem" id="nav-color">
                         <h2>FILMS</h2>
                     </a>
                     <a>
@@ -117,7 +114,7 @@ session_start();
                     <a>
                         <h2 class="line" id="nav-color">|</h2>
                     </a>
-                    <a href="Concerten.php"  class="menuItem" id="nav-color">
+                    <a href="Concerten.php" class="menuItem" id="nav-color">
                         <h2>CONCERTEN</h2>
                     </a>
                     <a>
@@ -139,6 +136,7 @@ session_start();
                         echo '<a href="login.php" id="login-Guest"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
                     }
+                    // Checks if logged in
                     if (isset($_SESSION['loggedInUser'])) {
                         $username = $_SESSION['user'];
                         $userquery = $pdo->prepare("SELECT * FROM users WHERE username = '$username'");
@@ -151,6 +149,7 @@ session_start();
                             return $userAdmin->isAdmin;
                         }
                         $userAdminNumber = getPoster();
+                        // checks user number and grats priveledges
                         if ($userAdminNumber == 2) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">
@@ -158,7 +157,7 @@ session_start();
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="addAdmin.php">Add admin</a>
+                                <a href="addAdmin.php" id=FilmsCurrentPage >Add admin</a>
                             </div>
                         </div>';
                         } elseif ($userAdminNumber == 1) {
@@ -195,6 +194,7 @@ session_start();
                     </script>
 
                 </div>
+                <!-- moving shopping card as required -->
                 <?php if (!isset($_SESSION['loggedInUser'])) {
                     echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button"></a>';
                 }
@@ -229,7 +229,7 @@ session_start();
             <a id="contact-color">
                 <h2>|</h2>
             </a>
-            <a href="Hobby.html" id="contact-color">
+            <a href="Sales.php" id="contact-color">
                 <h2>Sales</h2>
             </a>
         </footer>

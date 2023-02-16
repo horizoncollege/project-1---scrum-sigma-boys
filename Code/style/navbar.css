@@ -81,20 +81,48 @@
     h2 {
         padding: 5px;
     }
+    #mandje-sales{
+        width: 5%;
+        position: absolute;
+        height: 80px;
+        margin-top: 4%;
+        margin-left: 77%; 
+    }
     #mandje{
         width: 5%;
         position: absolute;
-        height: 80px;
         margin-top: 3%;
+        height: 80px;
         margin-left: 77%; 
     }
-    #mandje-user{
+    #mandje-user-contact{
+   width: 5%;
+        position: absolute;
+        height: 80px;
+        margin-top: 1%;
+        margin-left: 78%;
+    }
+    #mandje-Guest{
         width: 5%;
         position: absolute;
         height: 80px;
-        margin-top: 3%;
-        margin-left: 83%;
+        margin-top: 200%;
+        margin-left: 340%; 
     }
+    #mandje-user{
+        width: 5%;
+    position: absolute;
+    height: 80px;
+    margin-top: 3%;
+    margin-left: 82%;
+    }
+#mandje-user-index{
+    width: 5%;
+    position: absolute;
+    height: 80px;
+    margin-top: 3%;
+    margin-left: 180%;
+}
     footer {
         position: fixed;
         bottom: 0px;

@@ -32,7 +32,7 @@ $Img = $_POST['imageName'];
 
 $pdo = new PDO($dsn, $user, $pass);
 
-
+// Inserts needed values into the database
 $sql = "INSERT INTO tickets(ticketType, ticketName, Location, price, Duration, description, datum, poster)
   VALUES (?, ?, ?, ?, ?, ?,?,?);";
 

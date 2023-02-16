@@ -55,11 +55,7 @@ function echoFilm()
 </head>
 
 <body>
-
-
-    <!-- Top Navigation Menu -->
-    <div class="topnav">
-
+<div class="topnav">
         <a href="index.php" class="active">SIGMA MEDIA</a>
         <!-- Navigation links (hidden by default) -->
         <div id="myLinks">
@@ -69,6 +65,7 @@ function echoFilm()
             if (isset($_SESSION['loggedInUser'])) {
                 echo '<h1 id= "nav-color"> Welkom ' . $_SESSION['user'] . '</h1>';
             }
+
             ?>
             <a href="film.php" id=FilmsCurrentPage>FILMS</a>
             <a href="musical.php">MUSICALS</a>
@@ -82,6 +79,7 @@ function echoFilm()
             }
 
             ?>
+
         </div>
         <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -98,35 +96,41 @@ function echoFilm()
                     </a>
                 </div>
                 <div id="nav-bar" class="menu">
-                    <a href="film.php" id=FilmsCurrentPage class="menuItem" id="nav-color">
+                    <a href="film.php" id=FilmsCurrentPage  class="menuItem" id="nav-color">
                         <h2>FILMS</h2>
                     </a>
                     <a>
-                        <h2 id="nav-color">|</h2>
+                        <h2 class="line" id="nav-color">|</h2>
                     </a>
-                    <a href="musical.php" id="nav-color">
+                    <a href="musical.php" class="menuItem" id="nav-color">
                         <h2>MUSICALS</h2>
                     </a>
                     <a>
-                        <h2 id="nav-color">|</h2>
+                        <h2 class="line" id="nav-color">|</h2>
                     </a>
-                    <a href="Concerten.php"  class="menuItem" id="nav-color">
+                    <a href="Concerten.php" class="menuItem" id="nav-color">
                         <h2>CONCERTEN</h2>
                     </a>
                     <a>
-                        <h2 id="nav-color">|</h2>
+                        <h2 class="line" id="nav-color">|</h2>
                     </a>
-                    <a href="events.php" id="nav-color">
+                    <a href="events.php" class="menuItem" id="nav-color">
                         <h2>EVENTS</h2>
                     </a>
 
                     </a>
                 </div>
+                <!-- Hamburger -->
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <!-- show/hide login button -->
                 <div id="login">
                     <?php if (!isset($_SESSION['loggedInUser'])) {
-                        echo '<a href="login.php" id="nav-color"> <img src="Img/admin.png" alt="Login_button">
+                        echo '<a href="login.php" id="login-Guest"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
                     }
+                    // Checks if logged in
                     if (isset($_SESSION['loggedInUser'])) {
                         $username = $_SESSION['user'];
                         $userquery = $pdo->prepare("SELECT * FROM users WHERE username = '$username'");
@@ -139,6 +143,7 @@ function echoFilm()
                             return $userAdmin->isAdmin;
                         }
                         $userAdminNumber = getPoster();
+                        // checks user number and grats priveledges
                         if ($userAdminNumber == 2) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">
@@ -146,7 +151,7 @@ function echoFilm()
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="addAdmin.php">Add admin</a>
+                                <a href="addAdmin.php" >Add admin</a>
                             </div>
                         </div>';
                         } elseif ($userAdminNumber == 1) {
@@ -168,9 +173,9 @@ function echoFilm()
                             </div>';
                         }
                     }
+
                     ?>
-                    <a href="Hobby.html" id="nav-color"> <img src="Img/cart.png" alt="shopping_button">
-                    </a>
+                    <!-- log out confirmation -->
                     <script language="JavaScript">
                         function confirmLogout() {
 
@@ -181,7 +186,9 @@ function echoFilm()
                             }
                         }
                     </script>
+
                 </div>
+                <!-- moving shopping card as required -->
                 <?php if (!isset($_SESSION['loggedInUser'])) {
                     echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button"></a>';
                 }
@@ -189,10 +196,11 @@ function echoFilm()
                     echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button"></a>';
                 }
 
+                ?>
             </div>
 
 
-        </header>  
+        </header>
         <div id="body">
 
             <?php echoFilm(); ?>
@@ -208,7 +216,7 @@ function echoFilm()
             <a id="contact-color">
                 <h2>|</h2>
             </a>
-            <a href="Hobby.html" id="contact-color">
+            <a href="Sales.php" id="contact-color">
                 <h2>Sales</h2>
             </a>
         </footer>

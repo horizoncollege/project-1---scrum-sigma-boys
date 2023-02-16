@@ -16,6 +16,7 @@ try {
 } catch (\PDOException $e) {
     echo 'error connecting to database: ' . $e->getMessage();
 }
+// changes isAdmin number within the Database
 $priveledge = 1;
 $stmt = $pdo->prepare('SELECT * FROM users WHERE userID = :id');
 $stmt->bindParam(':id', $id);

@@ -171,28 +171,7 @@ foreach ($orderarray as $key) {
 
 
         </header>
-        <div id="body">
-            <h1 id="mandje">Winkelmandje</h1>
-            <h2 id="backwall"></h2>
-            <h3 id=Shopping>
-                <h3 id="item">FILM - Minions: The rise of Gru</h3>
-                <h3 id=dash>-</h3>
-                <h3 id="aantal">aantal tickets</h3>
-                <img src="Img/min.png" id="min" alt="Ree" srcset="">
-                <h3 id="number">2</h3>
-                <img src="Img/plus.png" id="plus" alt="Ree" srcset="">
-            </h3>
-            <h1 id="mandje2">Winkelmandje</h1>
-            <h2 id="backwall2"></h2>
-            <h3 id=Shopping2>
-                <h3 id="item2">FILM - Minions: The rise of Gru</h3>
-                <h3 id=dash2>-</h3>
-                <h3 id="aantal2">aantal tickets</h3>
-                <img src="Img/min.png" id="min2" alt="Ree" srcset="">
-                <h3 id="number2">2</h3>
-                <img src="Img/plus.png" id="plus2" alt="Ree" srcset="">
-            </h3>
-        </div>
+  
         <footer>
             <a href="contact.php" id="contact-color">
                 <h2>Contact</h2>
@@ -200,7 +179,7 @@ foreach ($orderarray as $key) {
             <a id="contact-color">
                 <h2>|</h2>
             </a>
-            <a href="Hobby.html" id="contact-color">
+            <a href="Sales.php" id="contact-color">
                 <h2>Sales</h2>
             </a>
         </footer>

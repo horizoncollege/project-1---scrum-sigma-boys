@@ -193,6 +193,7 @@ try {
                         echo '<a href="login.php" id="login-Guest"> <img src="Img/admin.png" alt="Login_button">
                         </a>';
                     }
+                    // Checks if logged in
                     if (isset($_SESSION['loggedInUser'])) {
                         $username = $_SESSION['user'];
                         $userquery = $pdo->prepare("SELECT * FROM users WHERE username = '$username'");
@@ -205,6 +206,7 @@ try {
                             return $userAdmin->isAdmin;
                         }
                         $userAdminNumber = getPoster();
+                        // Finds user number and grants them their privledges
                         if ($userAdminNumber == 2) {
                             echo '<h1 id="nav-color">' . $_SESSION['user'] . '
                         <div class="dropdown">
@@ -212,7 +214,7 @@ try {
                             <div class="dropdown-content">
                                 <a href="logout.php" onClick="return confirmLogout()">uitloggen</a>
                                 <a href="CreateEvent.php">create event</a>
-                                <a href="#">Add admin</a>
+                                <a href="addAdmin.php">Add admin</a>
                             </div>
                         </div>';
                         } elseif ($userAdminNumber == 1) {
@@ -247,11 +249,12 @@ try {
                             }
                         }
                     </script>
+                    <!-- Moves img to needed location depending on if logged in or not -->
                     <?php if (!isset($_SESSION['loggedInUser'])) {
-                        echo '<a href="shopping.php" id="mandje"> <img src="Img/cart.png" alt="shopping_button">';
+                        echo '<a href="shopping.php" id="mandje-Guest"> <img src="Img/cart.png" alt="shopping_button"></a>';
                     }
                     if (isset($_SESSION['loggedInUser'])) {
-                        echo '<a href="shopping.php" id="mandje-user"> <img src="Img/cart.png" alt="shopping_button">';
+                        echo '<a href="shopping.php" id="mandje-user-index"> <img src="Img/cart.png" alt="shopping_button"></a>';
                     }
 
                     ?>

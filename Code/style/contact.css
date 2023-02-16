@@ -3,78 +3,86 @@
     src: url(../Fonts/Geo-Regular.ttf);;
 }
 
-#contactform{
-     position:relative; 
-    border: 5px;
-     border-color: #471609; 
-    border-width: 15px;
-    border-style: solid;
+#contacttitel{
+    font-family: "Geo";
     display: flex;
-    flex-direction: column;
+    color: #b11a09;
     justify-content: center;
-     background-color: #471609;  
-    width: 70%;
-    height:50%;
-    margin-left: 10%;
-    min-width: 70%;
-}
-#top{
-    display: flex;
-    text-align: center;
-    justify-content: center;
-}
-#bottem{
-    display: flex;
-    text-align: center;
-    justify-content: center;
-}
-span{
-    color:#019482;
-}
-#inputtop{
-    
-    width: 50%;
-    height: 100%;
-    font-family: Geo;
-    font-size: 100%;
-    background: #D9D9D9;
-    padding: 5px;
-    border-color: #471609;;
-    border-width: 100%;
 }
 
-#inputtop:first-child{
-    margin-right: 5px;
+
+.contactknop:hover {
+    cursor: pointer;
+    filter: contrast(60%);
 }
 
-#inputcenter{
+
+#contactform {
     width: 100%;
-    height: 100%;
-    font-family: Geo;
-    font-size: 100%;
-    margin-top: 5px;
+    max-width: 700px;
+    margin: 10px auto;
+    padding: 20px;
+    background-color: #471609;
+    border-radius: 10px;
+    font-family: "Geo";
+}
+
+#top {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+#inputtop {
+    width: 90%;
+    max-width: 600px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+    border: none;
+    background: #D9D9D9;
+    font-family: "Geo";
+    display:  flex;
+    flex-wrap: wrap;
+}
+
+#center {
+    margin: 10px 0;
+}
+
+#inputcenter {
+    width: 100%;
+    max-width: 675px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
     background: #D9D9D9;
     resize: none;
-    padding: 2px;
+    font-family: "Geo";
 }
-#inputbottem{
-    margin-top: 15px;
-    font-family: Geo;
-    font-size: 100%;
-    width: 50%;
-    height: 100%;
-    background-color: white;
+
+#bottem {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+#inputbottem {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 5px;
+    border: none;
     background: #D9D9D9;
-}
-#inputbottem:first-child{
-    margin-right: 5px;
+    font-family: "Geo";
 }
 
-button:hover{
-    cursor: pointer;
-}
 
-#ontvangen{
+
+
+
+#ontvangen {
     display: flex;
     text-align: center;
     justify-content: center;
@@ -87,8 +95,7 @@ button:hover{
     background-color: #D9D9D9;
     width: 70%;
     height: 20%;
-    width: 70%;
     margin-left: 10%;
     font-family: Geo;
-    font-size: 500%; 
-}   
+    font-size: 500%;
+}

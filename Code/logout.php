@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1> je bent uitgelogd</h1>
+    <!-- Logs you out and deletes the session -->
     <?php 
     session_start();
     session_unset();
